@@ -1,0 +1,57 @@
+Team number: 013-4
+Team name: 404 Aura Not Found
+Team members:
+    Kai Justice
+        GitHub Username: KiaForte
+        Email: kai.justice@colorado.edu
+    Benji Phipps
+        GitHub Username: Benjiphipps
+        Email: phippsbenji@gmail.com
+    Aidan Powell
+        GitHub Username: Adonut37
+        Email: aidanpowell7@gmail.com
+    Evan Roche
+        GitHub Username: 
+        Email: 
+    Landon Covele
+        GitHub Username: 
+        Email: 
+    Wyatt Taylor
+        GitHub Username: 
+        Email: 
+App Name:
+    BuffPlate (Temp)
+App Description:
+    Pulls the dining hall menu from Nutrislice and generates a 
+    meal based on your macro targets (protein, carbs, fat, 
+    calories) and what you're in the mood for (like "something 
+    spicy" or "comfort food"). 
+    Students (maybe) can also sell unused swipes for about $6 
+    instead of the $12 door price, with surge pricing based on 
+    demand. Feature: a swipe exchange where the adaptive 
+    prices are real market prices, and you can buy futures 
+    (lock in a price today for a swipe at a set date and time 
+    later).
+Audience:
+    Students, mainly freshman, at CU Boulder who want to watch 
+    their macronutrients. Athletes would especially be interested. 
+    It’s annoying to look at Nutrislice and check the macronutrients
+    all the time, so now you can use the app to look at it for you.
+
+Vision Statement:
+    For CU Boulder students who need to watch their macronutrient 
+    intake. CU MacroPlan is a meal planning app that plans out 
+    your meals for you without having to look at Nutrislice. 
+    Unlike Nutrislice itself, CU MacroPlan doesn’t require you to 
+    look at individual food items for protein and carb intake.
+Communication Plan:
+    We have created a Discord Server dedicated to this project, 
+    and will be using that to communicate.
+
+Team Meeting
+
+
+
+Weekly Meeting with TA
+Mondays 5:45 - 6:00 PM
+
