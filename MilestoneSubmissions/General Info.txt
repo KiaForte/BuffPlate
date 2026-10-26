@@ -19,19 +19,15 @@ Team members:
     Wyatt Taylor
         GitHub Username: 
         Email: 
-App Name:
-    BuffPlate (Temp)
+
 App Description:
-    Pulls the dining hall menu from Nutrislice and generates a 
-    meal based on your macro targets (protein, carbs, fat, 
-    calories) and what you're in the mood for (like "something 
-    spicy" or "comfort food"). 
-    Students (maybe) can also sell unused swipes for about $6 
-    instead of the $12 door price, with surge pricing based on 
-    demand. Feature: a swipe exchange where the adaptive 
-    prices are real market prices, and you can buy futures 
-    (lock in a price today for a swipe at a set date and time 
-    later).
+1. AI-Powered Dining Hall Meal Planner
+- Integrates with Nutrislice to pull real-time dining hall menus and generate personalized meal recommendations based on students' nutritional goals (protein, carbs, fats, and calories).
+- Allows students to enter food preferences or cravings, such as "something spicy" or "comfort food," to receive meal suggestions that match both their macro targets and what they're in the mood for.
+2. Student Meal Swipe Marketplace (Potential Feature)
+- Allows students to buy and sell unused dining hall swipes at discounted prices (e.g., $6 per swipe compared to the standard $12 entry fee).
+- Uses dynamic pricing that adjusts based on real-time supply and demand, creating a student-driven marketplace.
+- Introduces a futures-style reservation system where students can lock in today's swipe price for use at a specific date and time in the future, protecting themselves from potential price increases.
 Audience:
     Students, mainly freshman, at CU Boulder who want to watch 
     their macronutrients. Athletes would especially be interested. 
