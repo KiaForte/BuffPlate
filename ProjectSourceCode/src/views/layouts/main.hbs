@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{#if title}}{{title}} · {{/if}}BuffPlate</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Figtree:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      --bg:      #F3F5EF;
+      --surface: #FFFFFF;
+      --dark:    #1F3B2D;
+      --dark-lt: #DCE8D3;
+      --fg:      #1C2B22;
+      --fg-2:    #5A6B60;
+      --accent:  #2F6B4F;
+      --border:  #E3EADF;
+      --inner:   #EEF2EA;
+      --shadow:  0 1px 2px rgba(31,59,45,.05), 0 8px 24px rgba(31,59,45,.06);
+      --protein: #2F6B4F;
+      --carbs:   #D99A2B;
+      --fat:     #6F9CC2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Figtree', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    .site-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 max(16px, 4vw);
+      display: flex;
+      align-items: center;
+      height: 56px;
+      gap: 24px;
+    }
+    .site-nav .brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+    .site-nav .nav-links { display: flex; gap: 16px; margin-left: auto; align-items: center; }
+    .site-nav .nav-links a { font-size: .875rem; font-weight: 500; color: var(--fg-2); }
+    .site-nav .nav-links a:hover { color: var(--fg); text-decoration: none; }
+
+    /* Page wrapper */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px max(16px, 4vw) 64px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      padding: 0 24px;
+      border-radius: 24px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #256040; color: #fff; text-decoration: none; }
+    .btn-ghost { background: none; border: 1.5px solid var(--border); color: var(--fg); }
+
+    /* Forms */
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    label { font-size: .875rem; font-weight: 600; color: var(--fg); }
+    input[type="text"], input[type="email"], input[type="password"] {
+      height: 48px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      padding: 0 16px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--fg);
+      background: var(--surface);
+      width: 100%;
+    }
+    input:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: transparent; }
+
+    .error-msg {
+      background: #FEE2E2;
+      color: #991B1B;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: .875rem;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="brand">BuffPlate</a>
+    <div class="nav-links">
+      {{#if user}}
+        <a href="/menu">Menu</a>
+        <form action="/logout" method="post" style="margin:0">
+          <button type="submit" class="btn btn-ghost" style="height:36px;padding:0 16px;font-size:.875rem">Sign out</button>
+        </form>
+      {{else}}
+        <a href="/login">Sign in</a>
+        <a href="/register" class="btn btn-primary" style="height:36px;padding:0 16px;font-size:.875rem">Register</a>
+      {{/if}}
+    </div>
+  </nav>
+  {{{body}}}
+</body>
+</html>

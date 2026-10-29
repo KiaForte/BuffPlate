@@ -1,0 +1,132 @@
+{
+  "start_date": "2026-10-27",
+  "days": [
+    {
+      "date": "2026-10-27",
+      "menu_items": [
+        { "is_section_title": true, "text": "The Grange: B.Y.O Burrito, Bowl, or Taco" },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Seasoned Ground Beef",
+            "rounded_nutrition_info": {
+              "calories": 210,
+              "g_protein": 18,
+              "g_carbs": 2,
+              "g_fat": 14,
+              "g_fiber": 0,
+              "g_sugar": 0,
+              "mg_sodium": 380
+            },
+            "serving_size_info": { "serving_size_amount": "3", "serving_size_unit": "oz" },
+            "icons": ["Gluten-Free"]
+          }
+        },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Black Beans",
+            "rounded_nutrition_info": {
+              "calories": 110,
+              "g_protein": 7,
+              "g_carbs": 20,
+              "g_fat": 1,
+              "g_fiber": 7,
+              "g_sugar": 1,
+              "mg_sodium": 190
+            },
+            "serving_size_info": { "serving_size_amount": "1/2", "serving_size_unit": "cup" },
+            "icons": ["Vegan", "Gluten-Free"]
+          }
+        },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Flour Tortilla",
+            "rounded_nutrition_info": {
+              "calories": 150,
+              "g_protein": 4,
+              "g_carbs": 27,
+              "g_fat": 3,
+              "g_fiber": 1,
+              "g_sugar": 1,
+              "mg_sodium": 310
+            },
+            "serving_size_info": { "serving_size_amount": "1", "serving_size_unit": "each" },
+            "icons": []
+          }
+        },
+        { "is_section_title": true, "text": "Grill" },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Herb Roasted Chicken",
+            "rounded_nutrition_info": {
+              "calories": 195,
+              "g_protein": 34,
+              "g_carbs": 0,
+              "g_fat": 8,
+              "g_fiber": 0,
+              "g_sugar": 0,
+              "mg_sodium": 310
+            },
+            "serving_size_info": { "serving_size_amount": "4.5", "serving_size_unit": "oz" },
+            "icons": ["Gluten-Free", "Smart Pick"]
+          }
+        },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Grilled Salmon",
+            "rounded_nutrition_info": {
+              "calories": 230,
+              "g_protein": 25,
+              "g_carbs": 0,
+              "g_fat": 14,
+              "g_fiber": null,
+              "g_sugar": null,
+              "mg_sodium": 280
+            },
+            "serving_size_info": { "serving_size_amount": "4", "serving_size_unit": "oz" },
+            "icons": ["Gluten-Free"]
+          }
+        },
+        { "is_section_title": true, "text": "Global Kitchen" },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Chickpea Tikka Masala",
+            "rounded_nutrition_info": {
+              "calories": 260,
+              "g_protein": 11,
+              "g_carbs": 32,
+              "g_fat": 10,
+              "g_fiber": 7,
+              "g_sugar": 8,
+              "mg_sodium": 520
+            },
+            "serving_size_info": { "serving_size_amount": "1", "serving_size_unit": "cup" },
+            "icons": ["Vegan"]
+          }
+        },
+        {
+          "is_section_title": false,
+          "food": {
+            "name": "Wild Rice Pilaf",
+            "rounded_nutrition_info": {
+              "calories": 200,
+              "g_protein": 7,
+              "g_carbs": 40,
+              "g_fat": 2,
+              "g_fiber": 3,
+              "g_sugar": 1,
+              "mg_sodium": 180
+            },
+            "serving_size_info": { "serving_size_amount": "1", "serving_size_unit": "cup" },
+            "icons": ["Vegan", "Gluten-Free"]
+          }
+        }
+      ]
+    }
+  ]
+}

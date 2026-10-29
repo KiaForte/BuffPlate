@@ -1,0 +1,31 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3001:3000"
+    env_file: .env
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    env_file: .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - ./src/init_data/create.sql:/docker-entrypoint-initdb.d/01_create.sql
+      - ./src/init_data/insert.sql:/docker-entrypoint-initdb.d/02_insert.sql
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
