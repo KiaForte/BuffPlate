@@ -1,2 +1,8 @@
 
 Group Number: 013-4
+
+Release Notes 10/28/26
+    * Added General Info, Release Notes, and Team Meeting Logs and added required areas
+    * Inserted a pdf of the Lab 8 Page
+    * Added a .gitignore to the file itself and Project Source Code
+    * Got information about Landon dropping the class, so took his name off of the team list

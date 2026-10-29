@@ -1,9 +1,10 @@
+
 Team number: 013-4
 Team name: 404 Aura Not Found
 Team members:
     Kai Justice
         GitHub Username: KiaForte
-        Email: kai.justice@colorado.edu
+        Email: kaiajustice05@gmail.com
     Benji Phipps
         GitHub Username: Benjiphipps
         Email: phippsbenji@gmail.com
@@ -11,9 +12,6 @@ Team members:
         GitHub Username: Adonut37
         Email: aidanpowell7@gmail.com
     Evan Roche
-        GitHub Username: 
-        Email: 
-    Landon Covele
         GitHub Username: 
         Email: 
     Wyatt Taylor
@@ -28,6 +26,7 @@ App Description:
 - Allows students to buy and sell unused dining hall swipes at discounted prices (e.g., $6 per swipe compared to the standard $12 entry fee).
 - Uses dynamic pricing that adjusts based on real-time supply and demand, creating a student-driven marketplace.
 - Introduces a futures-style reservation system where students can lock in today's swipe price for use at a specific date and time in the future, protecting themselves from potential price increases.
+
 Audience:
     Students, mainly freshman, at CU Boulder who want to watch 
     their macronutrients. Athletes would especially be interested. 
@@ -40,14 +39,13 @@ Vision Statement:
     your meals for you without having to look at Nutrislice. 
     Unlike Nutrislice itself, CU MacroPlan doesn’t require you to 
     look at individual food items for protein and carb intake.
+
 Communication Plan:
     We have created a Discord Server dedicated to this project, 
     and will be using that to communicate.
 
 Team Meeting
-
-
+    Sunday 4:00 - 4:15 PM Online On Discord Voice Chat
 
 Weekly Meeting with TA
-Mondays 5:45 - 6:00 PM
-
+    Mondays 5:45 - 6:00 PM Online
