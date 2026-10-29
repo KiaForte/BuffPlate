@@ -97,6 +97,11 @@ app.post('/logout', (req, res) => {
   req.session.destroy(() => res.redirect('/login'));
 });
 
+app.get('/dev-login', (req, res) => {
+  req.session.user = { id: 0, username: 'dev' };
+  res.redirect('/menu');
+});
+
 // Menu (login required)
 app.get('/menu', requireLogin, async (req, res) => {
   const halls = hallsConfig.map(h => ({
@@ -109,10 +114,16 @@ app.get('/menu', requireLogin, async (req, res) => {
     return res.render('menu', { title: 'Menu', halls, error: 'Invalid date.' });
   }
 
+  const ALLERGENS   = new Set(['Peanuts', 'Tree Nuts', 'Shellfish', 'Fish', 'Dairy', 'Eggs', 'Soy', 'Wheat', 'Sesame', 'Pork']);
+  const PREFERENCES = new Set(['Vegan', 'Vegetarian', 'Smart Pick', 'Gluten Free']);
+
   try {
     const items = await fetchHallMenu('c5', today);
 
-    // Group by station, then by section within each station
+    const c5Cfg       = hallsConfig.find(h => h.id === 'c5');
+    const stationMeta = new Map(c5Cfg.stations.map(s => [s.label, s]));
+
+    // Group by station → section
     const stationMap = new Map();
     for (const item of items) {
       if (!stationMap.has(item.station)) stationMap.set(item.station, new Map());
@@ -123,14 +134,17 @@ app.get('/menu', requireLogin, async (req, res) => {
     }
     const stations = [...stationMap.entries()].map(([station, secMap]) => ({
       station,
+      mealTimes: stationMeta.get(station)?.mealTimes ?? ['lunch', 'dinner'],
       sections: [...secMap.entries()].map(([section, items]) => ({
         section: section || null, items,
       })),
     }));
 
-    const allTags  = [...new Set(items.flatMap(i => i.tags))].sort();
-    const dateLabel = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    res.render('menu', { title: 'Menu', date: dateLabel, halls, stations, allTags, noItems: stations.length === 0 });
+    const allTags      = [...new Set(items.flatMap(i => i.tags))];
+    const inclusionTags = allTags.filter(t => PREFERENCES.has(t)).sort();
+    const exclusionTags = allTags.filter(t => ALLERGENS.has(t)).sort();
+    const dateLabel     = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    res.render('menu', { title: 'Menu', date: dateLabel, halls, stations, inclusionTags, exclusionTags, noItems: stations.length === 0 });
   } catch (err) {
     console.error('[menu route]', err.message);
     res.render('menu', { title: 'Menu', halls, error: 'Could not load today\'s menu. Try again in a few minutes.' });
