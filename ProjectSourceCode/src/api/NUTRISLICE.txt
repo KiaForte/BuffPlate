@@ -1,0 +1,43 @@
+# Nutrislice reference: CU Boulder dining (C5 only so far)
+
+## Base addresses
+District subdomain: colorado-diningmenus
+Page link:  https://colorado-diningmenus.nutrislice.com/menu/{hallSlug}/{menuType}/{yyyy-mm-dd}
+Data link:  https://colorado-diningmenus.api.nutrislice.com/menu/api/weeks/school/{hallSlug}/menu-type/{menuType}/{yyyy}/{mm}/{dd}?format=json
+No API key. Unofficial endpoint, so cache results and send a normal User-Agent header.
+
+## Halls
+| Display name         | Slug                  | Status      |
+|----------------------|-----------------------|-------------|
+| C5 (Village Center)  | village-center-dining | live        |
+| Sewall Hall          | not collected yet     | coming soon |
+| Center for Community | not collected yet     | coming soon |
+| Kitt Salad           | not collected yet     | coming soon |
+
+## C5 stations (slug: village-center-dining)
+| Station          | Menu type              |
+|------------------|------------------------|
+| Meal of the day  | vc-meal-of-the-day     |
+| Toast            | vc_toast               |
+| Curry Road       | vc_curryroad           |
+| Middleterranean  | vc_middleterranean     |
+| Salad and deli bar | vc_vc-salad-deli-bar |
+| Hearth           | hearth                 |
+| Peaks            | vc_peaks               |
+| Grange           | vc_grange              |
+
+Note: vc-meal-of-the-day uses hyphens, the rest use underscores, and the salad bar
+name really does have a doubled "vc".
+
+## Example data link
+https://colorado-diningmenus.api.nutrislice.com/menu/api/weeks/school/village-center-dining/menu-type/vc_grange/2026/10/29?format=json
+
+## Response shape (checked against a real vc-meal-of-the-day response)
+- top level: { start_date, menu_type_id, days: [...] }, 7 days
+- day: { date: "YYYY-MM-DD", menu_items: [...] }
+- menu_items entry is either a section header { is_section_title: true, text } or a food { is_section_title: false, food: {...} }
+- food.name
+- food.rounded_nutrition_info: calories, g_protein, g_carbs, g_fat, g_fiber, g_sugar, mg_sodium (any can be null)
+- food.serving_size_info: { serving_size_amount, serving_size_unit }, and macros are per serving
+- food.icons: tags like Vegan, Pork, Smart Pick (returned as { food_icons: [{name, type}] }, not a plain array)
+- A day can contain only section headers and no foods

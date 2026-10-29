@@ -1,7 +1,94 @@
+<style>
+  .filter-chip {
+    font-family: inherit;
+    font-size: .8125rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1.5px solid var(--inner);
+    background: transparent;
+    color: var(--fg-2);
+    cursor: pointer;
+    transition: background .12s, color .12s, border-color .12s;
+    white-space: nowrap;
+  }
+  .filter-chip.active {
+    background: var(--dark);
+    color: var(--dark-lt);
+    border-color: var(--dark);
+  }
+  .filter-chip:hover:not(.active) {
+    border-color: var(--dark);
+    color: var(--fg);
+  }
+
+  details.station {
+    margin-bottom: 12px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  details.station > summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    background: var(--card);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--fg-2);
+    cursor: pointer;
+    user-select: none;
+    border-radius: 16px;
+  }
+  details.station[open] > summary {
+    border-radius: 16px 16px 0 0;
+    border-bottom: 1px solid var(--inner);
+  }
+  details.station > summary::-webkit-details-marker { display: none; }
+  details.station > summary::after {
+    content: '▾';
+    font-size: .875rem;
+    color: var(--fg-2);
+    transition: transform .15s;
+  }
+  details.station[open] > summary::after {
+    transform: rotate(180deg);
+  }
+  details.station > .station-body {
+    background: var(--card);
+    border-radius: 0 0 16px 16px;
+  }
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 68px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--inner);
+  }
+  .section-label {
+    font-size: .8125rem;
+    font-weight: 600;
+    color: var(--fg-2);
+    padding: 8px 16px 2px;
+    letter-spacing: .03em;
+  }
+  .no-items-msg {
+    padding: 20px 16px;
+    font-size: .875rem;
+    color: var(--fg-2);
+    text-align: center;
+    font-style: italic;
+  }
+</style>
+
 <div class="page">
 
   {{!-- Hall picker --}}
-  <div style="margin-bottom: 24px;">
+  <div style="margin-bottom: 20px;">
     <p style="font-size: .8125rem; font-weight: 500; color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px;">Dining Halls</p>
     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
       {{#each halls}}
@@ -9,8 +96,7 @@
           <button style="font-family: inherit; font-size: .875rem; font-weight: 600; padding: 7px 16px; border-radius: 99px; border: none; background: var(--dark); color: var(--dark-lt); cursor: default;">{{displayName}}</button>
         {{else}}
           <button disabled style="font-family: inherit; font-size: .875rem; font-weight: 500; padding: 7px 16px; border-radius: 99px; border: 1.5px solid var(--inner); background: transparent; color: var(--fg-2); cursor: not-allowed; display: flex; align-items: center; gap: 6px;">
-            {{displayName}}
-            <span style="font-size: .75rem; font-weight: 500; opacity: .65;">Coming soon</span>
+            {{displayName}}<span style="font-size: .75rem; opacity: .65;">Coming soon</span>
           </button>
         {{/if}}
       {{/each}}
@@ -18,9 +104,23 @@
   </div>
 
   {{!-- Date header --}}
-  <header style="margin-bottom: 20px;">
+  <header style="margin-bottom: 16px;">
     <h1 style="font-family: 'Fraunces', Georgia, serif; font-size: 2rem; font-weight: 500; letter-spacing: -.01em;">{{date}}</h1>
   </header>
+
+  {{!-- Dietary filters (only shown when there are items) --}}
+  {{#unless error}}
+    {{#if allTags}}
+      <div style="margin-bottom: 20px;">
+        <p style="font-size: .8125rem; font-weight: 500; color: var(--fg-2); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px;">Filter</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="filter-bar">
+          {{#each allTags}}
+            <button class="filter-chip" data-filter-tag="{{this}}">{{this}}</button>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+  {{/unless}}
 
   {{#if error}}
     <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 16px; padding: 20px 24px; color: #78350F;">
@@ -34,39 +134,77 @@
     </div>
 
   {{else}}
-    {{#each stations}}
-      <section style="margin-bottom: 28px;">
-        <h2 style="font-size: .75rem; font-weight: 700; color: var(--fg-2); letter-spacing: .07em; text-transform: uppercase; margin-bottom: 10px; padding-left: 4px;">{{station}}</h2>
-        {{#each sections}}
-          {{#if section}}
-            <p style="font-size: .8125rem; font-weight: 600; color: var(--fg-2); margin: 10px 0 6px 4px; letter-spacing: .03em;">{{section}}</p>
-          {{/if}}
-          <div class="card" style="{{#unless @first}}margin-top: 8px;{{/unless}}">
-            {{#each items}}
-              <div style="display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 12px 16px; {{#unless @first}}border-top: 1px solid var(--inner);{{/unless}}">
-                <div style="flex: 1; min-width: 0;">
-                  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                    <span style="font-size: 15px; font-weight: 500;">{{name}}</span>
-                    {{#each tags}}
-                      <span style="font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 9px; background: var(--dark-lt); color: var(--dark); white-space: nowrap;">{{this}}</span>
-                    {{/each}}
+    <div id="station-list">
+      {{#each stations}}
+        <details class="station" open data-station>
+          <summary>{{station}}</summary>
+          <div class="station-body">
+            {{#each sections}}
+              {{#if section}}
+                <div class="section-label">{{section}}</div>
+              {{/if}}
+              {{#each items}}
+                <div class="item-row" data-item data-item-tags="{{json tags}}">
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                      <span style="font-size: 15px; font-weight: 500;">{{name}}</span>
+                      {{#each tags}}
+                        <span style="font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 9px; background: var(--dark-lt); color: var(--dark); white-space: nowrap;">{{this}}</span>
+                      {{/each}}
+                    </div>
+                    {{#if servingText}}
+                      <div style="font-size: 12px; color: var(--fg-2); margin-top: 2px;">per {{servingText}}</div>
+                    {{/if}}
                   </div>
-                  {{#if servingText}}
-                    <div style="font-size: 12px; color: var(--fg-2); margin-top: 2px;">per {{servingText}}</div>
-                  {{/if}}
-                </div>
-                <div style="text-align: right; flex-shrink: 0;">
-                  <div style="font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums;">{{roundVal calories}} kcal</div>
-                  <div style="font-size: 12px; color: var(--fg-2); margin-top: 2px; font-variant-numeric: tabular-nums; white-space: nowrap;">
-                    P {{roundVal protein}}g &nbsp;·&nbsp; C {{roundVal carbs}}g &nbsp;·&nbsp; F {{roundVal fat}}g
+                  <div style="text-align: right; flex-shrink: 0;">
+                    <div style="font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums;">{{roundVal calories}} kcal</div>
+                    <div style="font-size: 12px; color: var(--fg-2); margin-top: 2px; font-variant-numeric: tabular-nums; white-space: nowrap;">
+                      P {{roundVal protein}}g &nbsp;·&nbsp; C {{roundVal carbs}}g &nbsp;·&nbsp; F {{roundVal fat}}g
+                    </div>
                   </div>
                 </div>
-              </div>
+              {{/each}}
             {{/each}}
+            <div class="no-items-msg" hidden>No matching items in this station.</div>
           </div>
-        {{/each}}
-      </section>
-    {{/each}}
+        </details>
+      {{/each}}
+    </div>
   {{/if}}
 
 </div>
+
+<script>
+  (function () {
+    const selected = new Set();
+    const chips    = document.querySelectorAll('.filter-chip');
+    const stations = document.querySelectorAll('[data-station]');
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const tag = chip.dataset.filterTag;
+        if (selected.has(tag)) { selected.delete(tag); chip.classList.remove('active'); }
+        else                   { selected.add(tag);    chip.classList.add('active'); }
+        applyFilters();
+      });
+    });
+
+    function applyFilters() {
+      stations.forEach(station => {
+        const items = station.querySelectorAll('[data-item]');
+        let visible = 0;
+
+        items.forEach(item => {
+          const tags = JSON.parse(item.dataset.itemTags || '[]');
+          const show = selected.size === 0 || tags.some(t => selected.has(t));
+          item.hidden = !show;
+          if (show) visible++;
+        });
+
+        const noMsg = station.querySelector('.no-items-msg');
+        if (noMsg) noMsg.hidden = visible > 0;
+        station.hidden = selected.size > 0 && visible === 0;
+      });
+    }
+  })();
+</script>

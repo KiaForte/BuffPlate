@@ -6,7 +6,7 @@ const path       = require('path');
 const { engine } = require('express-handlebars');
 
 const db         = require('./db');
-const { fetchHallMenu } = require('./services/menu');
+const { fetchHallMenu } = require('./api/menu');
 const hallsConfig        = require('./config/menus');
 
 const app  = express();
@@ -20,6 +20,7 @@ app.engine('hbs', engine({
   layoutsDir: path.join(__dirname, 'views/layouts'),
   helpers: {
     roundVal: n => (n != null ? Math.round(n) : '—'),
+    json: v => JSON.stringify(v),
   },
 }));
 app.set('view engine', 'hbs');
@@ -127,8 +128,9 @@ app.get('/menu', requireLogin, async (req, res) => {
       })),
     }));
 
+    const allTags  = [...new Set(items.flatMap(i => i.tags))].sort();
     const dateLabel = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-    res.render('menu', { title: 'Menu', date: dateLabel, halls, stations, noItems: stations.length === 0 });
+    res.render('menu', { title: 'Menu', date: dateLabel, halls, stations, allTags, noItems: stations.length === 0 });
   } catch (err) {
     console.error('[menu route]', err.message);
     res.render('menu', { title: 'Menu', halls, error: 'Could not load today\'s menu. Try again in a few minutes.' });

@@ -1,6 +1,6 @@
 const assert  = require('assert');
 const fixture = require('../src/init_data/menu_fixture.json');
-const { parseItems } = require('../src/services/menu');
+const { parseItems } = require('../src/api/menu');
 
 const FIXTURE_DATE = fixture.days[0].date; // '2026-10-26'
 const CTX = { hallId: 'c5', stationLabel: 'Meal of the Day' };
