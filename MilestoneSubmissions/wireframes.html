@@ -4,94 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BuffPlate Wireframes</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Figtree:wght@400;500;600&display=swap">
 <style>
 /* =====================================================
-   DESIGN TOKENS
-   Layout: centered doc with sticky nav + scrollable frame area
+   TOKENS — buffplate design system
    ===================================================== */
 :root {
-  --bg:        #F2F4F7;
-  --surface:   #FFFFFF;
-  --border:    #D0D5DD;
-  --fg:        #101828;
-  --fg-2:      #475467;
-  --fg-3:      #98A2B3;
-  --accent:    #1D4ED8;
-  --accent-lt: #EFF4FF;
+  --bg:         #F3F5EF;
+  --surface:    #FFFFFF;
+  --surface-2:  #EEF2EA;
+  --dark:       #1F3B2D;
+  --dark-lt:    #DCE8D3;
+  --fg:         #1C2B22;
+  --fg-2:       #5A6B60;
+  --accent:     #2F6B4F;
+  --border:     #DCE5D6;
+  --track:      #E3EADF;
+  --nav-border: #E3EADF;
+  --inner-div:  #EEF2EA;
+  --tag-bg:     #E4ECDD;
+  --protein:    #2F6B4F;
+  --carbs:      #D99A2B;
+  --fat:        #6F9CC2;
+  --card-shadow: 0 1px 2px rgba(31,59,45,.05), 0 8px 24px rgba(31,59,45,.06);
 
-  /* wireframe palette */
-  --wf-bg:     #F8F9FA;
-  --wf-box:    #E4E7EC;
-  --wf-line:   #D0D5DD;
-  --wf-dark:   #667085;
-  --wf-label:  #344054;
-  --wf-img:    #C8CDD8;
-  --wf-btn:    #344054;
-  --wf-btn-p:  #1D4ED8;
-
-  --radius: 8px;
+  /* doc chrome */
+  --doc-bg:     #E8EBE4;
+  --doc-header: #FFFFFF;
+  --tab-active: #1F3B2D;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--bg);
+  font-family: 'Figtree', system-ui, sans-serif;
+  background: var(--doc-bg);
   color: var(--fg);
   min-height: 100vh;
-  padding-bottom: 48px;
+  padding-bottom: 60px;
 }
 
-/* ── Header ─────────────────────────────────────────── */
+/* ── Doc header ──────────────────────────────────────── */
 .doc-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 20px max(20px, 5vw);
+  background: var(--doc-header);
+  border-bottom: 1px solid var(--track);
+  padding: 18px max(20px, 5vw);
   display: flex;
-  align-items: baseline;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
   flex-wrap: wrap;
 }
 .doc-header h1 {
+  font-family: 'Fraunces', Georgia, serif;
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.01em;
-  color: var(--fg);
 }
-.doc-header .meta {
-  font-size: 0.75rem;
-  color: var(--fg-3);
-  font-family: 'DM Mono', monospace;
-}
+.doc-header .meta { font-size: .75rem; color: var(--fg-2); }
 .team-tag {
-  font-size: 0.7rem;
-  font-weight: 600;
-  background: var(--accent-lt);
-  color: var(--accent);
-  padding: 2px 8px;
-  border-radius: 999px;
   margin-left: auto;
+  font-size: .7rem;
+  font-weight: 600;
+  background: var(--dark-lt);
+  color: var(--dark);
+  padding: 3px 10px;
+  border-radius: 999px;
 }
 
-/* ── Tab Nav ─────────────────────────────────────────── */
+/* ── Tab nav ─────────────────────────────────────────── */
 .tab-nav {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: var(--doc-header);
+  border-bottom: 1px solid var(--track);
   display: flex;
-  gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
 }
 .tab-nav::-webkit-scrollbar { display: none; }
-
 .tab-btn {
   flex-shrink: 0;
   padding: 10px 18px;
-  font-size: 0.78rem;
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: .78rem;
   font-weight: 500;
   color: var(--fg-2);
   background: none;
@@ -99,1336 +95,928 @@ body {
   border-bottom: 2px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color .12s, border-color .12s;
 }
 .tab-btn:hover { color: var(--fg); }
-.tab-btn.active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
+.tab-btn.active { color: var(--tab-active); border-bottom-color: var(--tab-active); font-weight: 600; }
 
-/* ── Screen Area ─────────────────────────────────────── */
+/* ── Screen layout ───────────────────────────────────── */
 .screen-area {
   display: flex;
   justify-content: center;
-  padding: 36px max(16px, 4vw) 0;
-  gap: 32px;
-  flex-wrap: wrap;
   align-items: flex-start;
+  padding: 36px max(16px, 4vw) 0;
+  gap: 28px;
+  flex-wrap: wrap;
 }
-
 .screen-wrap { display: none; }
 .screen-wrap.active { display: contents; }
 
-.screen-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 4px 24px rgba(0,0,0,.04);
-  width: 340px;
+/* Phone card */
+.phone {
+  width: 390px;
   flex-shrink: 0;
+  border-radius: 44px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.10), 0 24px 60px rgba(0,0,0,.16);
+  border: 8px solid #1A2E24;
+  background: var(--dark);
+  position: relative;
 }
-
+/* Dynamic island pill */
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 30px;
+  background: #1A2E24;
+  border-radius: 20px;
+  z-index: 10;
+}
+.phone-inner {
+  width: 390px;
+  height: 844px;
+  overflow: hidden;
+  background: var(--bg);
+}
 .screen-label {
-  background: var(--fg);
-  color: #fff;
-  font-size: 0.68rem;
+  position: absolute;
+  bottom: -34px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: .68rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  color: var(--fg-2);
+  letter-spacing: .04em;
   text-transform: uppercase;
-  padding: 6px 14px;
-  font-family: 'DM Mono', monospace;
 }
 
-/* ── Annotations ─────────────────────────────────────── */
-.annotation-col {
-  width: 220px;
+/* Phone wrapper for label positioning */
+.phone-wrap {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+/* ── Annotation column ───────────────────────────────── */
+.ann-col {
+  width: 210px;
   flex-shrink: 0;
   padding-top: 8px;
 }
-.annotation-col h3 {
-  font-size: 0.75rem;
+.ann-col h3 {
+  font-size: .68rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  color: var(--fg-3);
-  margin-bottom: 12px;
-}
-.annotation-item {
-  display: flex;
-  gap: 10px;
+  color: var(--fg-2);
   margin-bottom: 14px;
-  align-items: flex-start;
 }
-.annotation-num {
-  width: 20px;
-  height: 20px;
-  background: var(--accent);
+.ann-item { display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start; }
+.ann-num {
+  width: 20px; height: 20px;
+  background: var(--dark);
   color: #fff;
   border-radius: 50%;
-  font-size: 0.65rem;
+  font-size: .6rem;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   margin-top: 1px;
 }
-.annotation-text {
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: var(--fg-2);
-}
-.annotation-text strong {
-  display: block;
+.ann-text { font-size: .72rem; line-height: 1.55; color: var(--fg-2); }
+.ann-text strong { display: block; color: var(--fg); font-weight: 600; font-size: .7rem; }
+
+/* ── Shared app components ───────────────────────────── */
+.app-screen {
+  width: 390px;
+  height: 844px;
+  box-sizing: border-box;
+  background: var(--bg);
   color: var(--fg);
-  font-weight: 600;
-  font-size: 0.72rem;
-}
-
-/* ── Wireframe Components ────────────────────────────── */
-.wf { padding: 0; }
-
-/* Phone chrome */
-.phone-bar {
-  background: var(--wf-bg);
-  border-bottom: 1px solid var(--wf-line);
+  font-family: 'Figtree', system-ui, sans-serif;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 16px 6px;
-  font-size: 0.65rem;
-  color: var(--wf-dark);
-  font-family: 'DM Mono', monospace;
-}
-.status-dots { display: flex; gap: 4px; }
-.status-dots span {
-  width: 6px; height: 6px;
-  background: var(--wf-dark);
-  border-radius: 50%;
+  flex-direction: column;
 }
 
-/* Nav bar (top) */
-.nav-bar {
+.bottom-nav {
+  margin-top: auto;
+  display: flex;
   background: var(--surface);
-  border-bottom: 1px solid var(--wf-line);
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.nav-bar .logo-text {
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-}
-.nav-bar .back-btn {
-  width: 24px; height: 24px;
-  background: var(--wf-box);
-  border-radius: 6px;
+  border-top: 1px solid var(--nav-border);
+  padding: 8px 16px 28px;
   flex-shrink: 0;
 }
-.nav-bar .avatar {
-  width: 28px; height: 28px;
-  background: var(--wf-img);
-  border-radius: 50%;
-  margin-left: auto;
-}
-.nav-bar .icon-btn {
-  width: 28px; height: 28px;
-  background: var(--wf-box);
-  border-radius: 6px;
-  margin-left: auto;
-}
-
-/* Bottom nav */
-.bottom-nav {
-  border-top: 1px solid var(--wf-line);
-  display: flex;
-  background: var(--surface);
-}
-.bottom-nav-item {
+.nav-item {
   flex: 1;
+  min-height: 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 3px;
-  padding: 8px 4px;
-  font-size: 0.55rem;
-  color: var(--fg-3);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-2);
 }
-.bottom-nav-item.active { color: var(--accent); }
-.bottom-nav-item .nav-icon {
-  width: 20px; height: 20px;
-  background: var(--wf-box);
-  border-radius: 4px;
+.nav-item.active { font-weight: 600; color: var(--dark); }
+.nav-pill {
+  display: flex; align-items: center; justify-content: center;
+  width: 56px; height: 30px; border-radius: 15px;
 }
-.bottom-nav-item.active .nav-icon { background: var(--accent-lt); }
+.nav-item.active .nav-pill { background: var(--dark-lt); }
 
-/* Generic box placeholder */
-.box {
-  background: var(--wf-box);
-  border-radius: 6px;
-}
-.img-box {
-  background: var(--wf-img);
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  color: var(--wf-dark);
-  font-family: 'DM Mono', monospace;
-}
-
-/* Text line placeholders */
-.line { height: 10px; background: var(--wf-box); border-radius: 4px; }
-.line-sm { height: 8px; background: var(--wf-box); border-radius: 4px; }
-.line-lg { height: 14px; background: var(--wf-box); border-radius: 4px; }
-
-/* Label text */
-.label {
-  font-size: 0.62rem;
-  font-weight: 600;
-  color: var(--wf-label);
-  letter-spacing: 0.03em;
-}
-.sublabel {
-  font-size: 0.58rem;
-  color: var(--wf-dark);
-}
-
-/* Input fields */
-.input-field {
-  border: 1px solid var(--wf-line);
-  border-radius: 6px;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #fff;
-}
-.input-icon { width: 12px; height: 12px; background: var(--wf-img); border-radius: 2px; flex-shrink: 0; }
-.input-text { flex: 1; height: 8px; background: var(--wf-box); border-radius: 3px; }
-.input-text.hint { background: var(--wf-line); width: 60%; }
-
-/* Buttons */
-.btn-primary {
-  background: var(--wf-btn-p);
-  border-radius: 8px;
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn-primary .line { background: rgba(255,255,255,0.8); }
-.btn-secondary {
-  background: none;
-  border: 1px solid var(--wf-line);
-  border-radius: 8px;
-  padding: 9px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Tags / chips */
-.chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
-.chip {
-  padding: 3px 9px;
-  border: 1px solid var(--wf-line);
-  border-radius: 999px;
-  font-size: 0.58rem;
-  color: var(--wf-label);
+.card {
   background: var(--surface);
-  white-space: nowrap;
-}
-.chip.selected {
-  background: var(--accent-lt);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Card */
-.wf-card {
-  border: 1px solid var(--wf-line);
-  border-radius: 8px;
+  border-radius: 24px;
   overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+.card-sm {
   background: var(--surface);
-}
-
-/* Progress bar */
-.progress-track {
-  height: 6px;
-  background: var(--wf-box);
-  border-radius: 999px;
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: var(--card-shadow);
 }
-.progress-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: var(--accent);
+.row {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 56px; padding: 0 10px 0 20px;
+}
+.row + .row { border-top: 1px solid var(--inner-div); }
+.row-label { font-size: 13px; font-weight: 500; color: var(--fg-2); width: 44px; flex-shrink: 0; }
+.row-value { flex: 1; font-size: 15px; font-weight: 500; }
+.chevron { flex-shrink: 0; }
+
+.prog-track { height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 4px; }
+
+.pill-btn {
+  display: inline-flex; align-items: center;
+  height: 44px; padding: 0 18px;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--fg); cursor: pointer;
+}
+.pill-btn.on {
+  background: var(--dark);
+  border-color: var(--dark);
+  color: #F3F5EF;
 }
 
-/* Divider */
-.divider { height: 1px; background: var(--wf-line); }
-
-/* Section body wrapper */
-.section { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
-.section-sm { padding: 10px 16px; display: flex; flex-direction: column; gap: 8px; }
-
-/* ── Annotation numbers inside wireframe ───────────────── */
-.ann {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px; height: 16px;
-  background: var(--accent);
-  color: #fff;
-  border-radius: 50%;
-  font-size: 0.55rem;
-  font-weight: 700;
-  vertical-align: middle;
-  margin-left: 4px;
+.icon-btn {
   flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 22px;
+  border: 0; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-2); color: var(--dark);
 }
 
-/* ── Macro ring mockup ───────────────────────────────── */
-.ring-row { display: flex; gap: 12px; }
-.ring-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.ring {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  border: 5px solid var(--wf-box);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.primary-btn {
+  display: flex; align-items: center; justify-content: center;
+  height: 56px; border-radius: 28px;
+  background: var(--accent); color: #fff;
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 17px; font-weight: 600;
+  text-decoration: none; border: 0; cursor: pointer; width: 100%;
 }
-.ring-inner { font-size: 0.58rem; font-weight: 700; color: var(--wf-label); font-family: 'DM Mono', monospace; }
-.ring.protein { border-color: #93C5FD; }
-.ring.carbs   { border-color: #86EFAC; }
-.ring.fat     { border-color: #FCA5A5; }
-.ring.cal     { border-color: #FCD34D; }
+.secondary-btn {
+  display: flex; align-items: center; justify-content: center;
+  height: 56px; border-radius: 28px;
+  border: 1.5px solid #B4C7AF; color: var(--dark);
+  font-family: 'Figtree', system-ui, sans-serif;
+  font-size: 17px; font-weight: 600;
+  text-decoration: none; background: none; cursor: pointer;
+}
 
+.tag {
+  font-size: 11.5px; font-weight: 600;
+  padding: 2px 8px; border-radius: 10px;
+  background: var(--tag-bg); color: var(--dark);
+  white-space: nowrap; flex-shrink: 0;
+}
+
+.fraunces { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+.tabnum { font-variant-numeric: tabular-nums; }
+
+/* Annotation number inline */
+sup.an {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 15px; height: 15px; background: var(--dark); color: #fff;
+  border-radius: 50%; font-size: .5rem; font-weight: 700;
+  vertical-align: super; margin-left: 3px; line-height: 1;
+}
 </style>
 </head>
 <body>
 
-<!-- ── HEADER ─────────────────────────────────────────── -->
 <header class="doc-header">
-  <h1>BuffPlate — Wireframes</h1>
-  <span class="meta">Lab 8 · CSCI 3308</span>
+  <h1>BuffPlate</h1>
+  <span class="meta">Wireframes · Lab 8 · CSCI 3308</span>
   <span class="team-tag">Team 013-4 · 404 Aura Not Found</span>
 </header>
 
-<!-- ── TAB NAV ───────────────────────────────────────── -->
 <nav class="tab-nav" role="tablist">
-  <button class="tab-btn active" onclick="showTab('login')" role="tab">1 · Login</button>
-  <button class="tab-btn" onclick="showTab('onboard')" role="tab">2 · Onboarding</button>
-  <button class="tab-btn" onclick="showTab('home')" role="tab">3 · Home</button>
-  <button class="tab-btn" onclick="showTab('generator')" role="tab">4 · Meal Generator</button>
-  <button class="tab-btn" onclick="showTab('results')" role="tab">5 · Meal Results</button>
-  <button class="tab-btn" onclick="showTab('detail')" role="tab">6 · Food Detail</button>
-  <button class="tab-btn" onclick="showTab('marketplace')" role="tab">7 · Swipe Market</button>
-  <button class="tab-btn" onclick="showTab('profile')" role="tab">8 · Profile</button>
+  <button class="tab-btn active" onclick="show('login')" role="tab">1 · Login</button>
+  <button class="tab-btn" onclick="show('onboard')" role="tab">2 · Set Goals</button>
+  <button class="tab-btn" onclick="show('home')" role="tab">3 · Today</button>
+  <button class="tab-btn" onclick="show('build')" role="tab">4 · Build a Plate</button>
+  <button class="tab-btn" onclick="show('plate')" role="tab">5 · Your Plate</button>
+  <button class="tab-btn" onclick="show('detail')" role="tab">6 · Food Detail</button>
+  <button class="tab-btn" onclick="show('market')" role="tab">7 · Swipe Market</button>
+  <button class="tab-btn" onclick="show('profile')" role="tab">8 · Profile</button>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 1 · LOGIN / REGISTER
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-login" class="screen-area">
+<!-- ══════════════════════════════════════════════════
+     1 · LOGIN
+     ══════════════════════════════════════════════════ -->
+<div id="s-login" class="screen-area">
   <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 1 — Login / Register</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding: 60px 24px 40px; align-items: stretch;">
 
-        <!-- Logo area -->
-        <div class="section" style="align-items:center; padding-top:28px; gap:6px;">
-          <div class="img-box" style="width:64px;height:64px;border-radius:14px;">LOGO</div>
-          <div class="line-lg" style="width:90px; margin-top:4px;"></div>
-          <div class="line-sm" style="width:140px;"></div>
-        </div>
-
-        <div class="section" style="gap:12px; padding-top:8px;">
-
-          <!-- Tabs: Login / Register -->
-          <div style="display:flex; border:1px solid var(--wf-line); border-radius:8px; overflow:hidden;">
-            <div style="flex:1; padding:7px; background:var(--wf-btn-p); text-align:center;">
-              <div class="line" style="background:rgba(255,255,255,0.7); width:50%; margin:auto;"></div>
+            <!-- Logo -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:44px">
+              <div style="width:68px;height:68px;background:var(--dark);border-radius:22px;display:flex;align-items:center;justify-content:center">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#DCE8D3" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="5" ry="9"/><path d="M3 12h18"/></svg>
+              </div>
+              <div class="fraunces" style="font-size:34px;letter-spacing:-0.02em">BuffPlate</div>
+              <div style="font-size:15px;color:var(--fg-2)">Eat well at CU Boulder</div>
             </div>
-            <div style="flex:1; padding:7px; background:var(--wf-bg); text-align:center;">
-              <div class="line" style="width:60%; margin:auto;"></div>
+
+            <!-- Form card -->
+            <div class="card">
+              <div class="row">
+                <span class="row-label">Email</span>
+                <span class="row-value" style="color:var(--fg-2)">you@colorado.edu</span>
+              </div>
+              <div class="row">
+                <span class="row-label">Password</span>
+                <span class="row-value" style="color:var(--fg-2)">••••••••</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-2)" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M1 12s3-7 11-7 11 7 11 7-3 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
             </div>
-          </div>
 
-          <!-- Email input -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:5px;">
-              <div class="label">CU Email</div>
-              <span class="ann">1</span>
+            <a href="#" class="primary-btn" style="margin-top:16px">Sign in</a>
+
+            <!-- Divider -->
+            <div style="display:flex;align-items:center;gap:10px;margin:20px 0">
+              <div style="flex:1;height:1px;background:var(--track)"></div>
+              <span style="font-size:13px;color:var(--fg-2)">or</span>
+              <div style="flex:1;height:1px;background:var(--track)"></div>
             </div>
-            <div class="input-field">
-              <div class="input-icon"></div>
-              <div class="input-text hint"></div>
-            </div>
+
+            <!-- CU SSO -->
+            <button style="width:100%;height:56px;border-radius:28px;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;gap:10px;font-family:inherit;font-size:15px;font-weight:600;color:var(--fg);cursor:pointer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+              Continue with CU credentials
+            </button>
+
+            <p style="margin-top:auto;text-align:center;font-size:14px;color:var(--fg-2)">
+              New to BuffPlate? <span style="color:var(--dark);font-weight:600">Create account</span>
+            </p>
           </div>
-
-          <!-- Password input -->
-          <div>
-            <div class="label" style="margin-bottom:5px;">Password</div>
-            <div class="input-field">
-              <div class="input-icon"></div>
-              <div class="input-text hint" style="width:40%;"></div>
-              <div style="width:14px;height:10px;background:var(--wf-img);border-radius:2px;flex-shrink:0;"></div>
-            </div>
-          </div>
-
-          <!-- Forgot password -->
-          <div style="text-align:right;">
-            <div class="line-sm" style="width:90px; margin-left:auto; background:var(--wf-line);"></div>
-          </div>
-
-          <div class="btn-primary"><div class="line" style="width:80px;"></div></div>
-
-          <!-- Divider -->
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div class="divider" style="flex:1;"></div>
-            <div class="sublabel">OR</div>
-            <div class="divider" style="flex:1;"></div>
-          </div>
-
-          <!-- SSO button -->
-          <div style="display:flex; align-items:center; gap:4px;">
-            <div class="btn-secondary" style="flex:1; gap:6px;">
-              <div class="img-box" style="width:16px;height:16px;border-radius:3px;flex-shrink:0;background:var(--wf-img);">CU</div>
-              <div class="line-sm" style="width:100px;"></div>
-            </div>
-            <span class="ann">2</span>
-          </div>
-
-        </div>
-
-        <div class="divider"></div>
-        <div class="section-sm" style="align-items:center; flex-direction:row; justify-content:center;">
-          <div class="line-sm" style="width:110px;"></div>
-          <div class="line-sm" style="width:60px; background:var(--accent);"></div>
         </div>
       </div>
+      <div class="screen-label">Screen 1 — Login</div>
     </div>
 
-    <div class="annotation-col">
+    <div class="ann-col">
       <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>CU Email</strong>Must be a valid @colorado.edu address. Verified at signup to restrict to CU students.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>CU SSO</strong>Single sign-on via CU IdAM reduces friction for students who already have CU credentials.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Toggle</strong>Login / Register tabs share the same form; toggling swaps the fields without a full page transition.</div>
-      </div>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>CU Email required</strong>Validates @colorado.edu domain at sign-up to restrict access to enrolled students.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>CU SSO</strong>Delegates auth to CU IdAM — students who already use Canvas don't need a separate password.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>First-time flow</strong>After account creation, users land on Screen 2 (Set Goals) before the main app.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 2 · ONBOARDING — SET GOALS
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-onboard" class="screen-area" style="display:none;">
+<!-- ══════════════════════════════════════════════════
+     2 · ONBOARDING — SET GOALS
+     ══════════════════════════════════════════════════ -->
+<div id="s-onboard" class="screen-area" style="display:none">
   <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 2 — Onboarding: Set Macro Goals</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding: 52px 20px 0;">
 
-        <!-- Step indicator -->
-        <div style="padding:14px 16px 4px; display:flex; align-items:center; gap:6px;">
-          <div style="flex:1; height:4px; background:var(--accent); border-radius:2px;"></div>
-          <div style="flex:1; height:4px; background:var(--wf-box); border-radius:2px;"></div>
-          <div style="flex:1; height:4px; background:var(--wf-box); border-radius:2px;"></div>
-        </div>
-        <div class="section-sm" style="gap:4px;">
-          <div class="line-lg" style="width:160px;"></div>
-          <div class="line-sm" style="width:220px;"></div>
-        </div>
-
-        <div class="section" style="gap:14px;">
-
-          <!-- Daily Calories -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:6px;">
-              <div class="label">Daily Calorie Goal</div>
-              <span class="ann">1</span>
+            <!-- Step dots -->
+            <div style="display:flex;gap:6px;margin-bottom:20px">
+              <div style="flex:1;height:4px;border-radius:2px;background:var(--dark)"></div>
+              <div style="flex:1;height:4px;border-radius:2px;background:var(--track)"></div>
+              <div style="flex:1;height:4px;border-radius:2px;background:var(--track)"></div>
             </div>
-            <div style="display:flex; gap:8px; margin-bottom:8px;">
-              <div class="wf-card" style="flex:1; padding:10px 12px; text-align:center;">
-                <div class="line-lg" style="width:50px; margin:auto;"></div>
-                <div style="margin-top:4px;"><div class="line-sm" style="width:40px; margin:auto;"></div></div>
+
+            <h1 class="fraunces" style="font-size:30px;letter-spacing:-0.01em;line-height:1.1">Set your goals</h1>
+            <p style="margin:6px 0 18px;font-size:15px;color:var(--fg-2)">We'll build every plate around these.</p>
+
+            <!-- Stepper rows -->
+            <div class="card">
+              <div class="row" style="padding-right:10px;">
+                <span class="row-value">Daily calories</span>
+                <div style="display:flex;align-items:center;gap:2px">
+                  <button class="icon-btn" aria-label="Decrease calories"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="fraunces tabnum" style="font-size:20px;width:90px;text-align:center">2,300 <span class="fraunces" style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">kcal</span></span>
+                  <button class="icon-btn" aria-label="Increase calories"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
               </div>
-              <div class="wf-card" style="flex:1; padding:10px 12px; text-align:center; border-color:var(--accent); background:var(--accent-lt);">
-                <div class="line-lg" style="width:50px; margin:auto; background:var(--accent);"></div>
-                <div style="margin-top:4px;"><div class="line-sm" style="width:40px; margin:auto; background:var(--accent);opacity:0.4;"></div></div>
+              <div class="row" style="padding-right:10px;">
+                <span class="row-value">Protein</span>
+                <div style="display:flex;align-items:center;gap:2px">
+                  <button class="icon-btn" aria-label="Decrease protein"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="fraunces tabnum" style="font-size:20px;width:90px;text-align:center">140 <span style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">g</span></span>
+                  <button class="icon-btn" aria-label="Increase protein"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
               </div>
-              <div class="wf-card" style="flex:1; padding:10px 12px; text-align:center;">
-                <div class="line-lg" style="width:50px; margin:auto;"></div>
-                <div style="margin-top:4px;"><div class="line-sm" style="width:40px; margin:auto;"></div></div>
+              <div class="row" style="padding-right:10px;">
+                <span class="row-value">Carbs</span>
+                <div style="display:flex;align-items:center;gap:2px">
+                  <button class="icon-btn" aria-label="Decrease carbs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="fraunces tabnum" style="font-size:20px;width:90px;text-align:center">260 <span style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">g</span></span>
+                  <button class="icon-btn" aria-label="Increase carbs"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
+              </div>
+              <div class="row" style="padding-right:10px;">
+                <span class="row-value">Fat</span>
+                <div style="display:flex;align-items:center;gap:2px">
+                  <button class="icon-btn" aria-label="Decrease fat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="fraunces tabnum" style="font-size:20px;width:90px;text-align:center">70 <span style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">g</span></span>
+                  <button class="icon-btn" aria-label="Increase fat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                </div>
               </div>
             </div>
-            <div style="display:flex; gap:4px; align-items:center;">
-              <div class="progress-track" style="flex:1;">
-                <div class="progress-fill" style="width:60%;"></div>
+
+            <!-- Activity level -->
+            <div style="margin-top:20px">
+              <h2 style="font-size:14px;font-weight:600;margin-bottom:10px">Activity level</h2>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="pill-btn">Sedentary</button>
+                <button class="pill-btn on">Light</button>
+                <button class="pill-btn">Active</button>
+                <button class="pill-btn">Very active</button>
               </div>
+            </div>
+
+            <div style="margin-top:auto;padding-bottom:36px">
+              <a href="#" class="primary-btn">Let's go</a>
             </div>
           </div>
-
-          <!-- Macro sliders -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Macro Split</div>
-              <span class="ann">2</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <!-- Protein -->
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                  <div class="sublabel">Protein</div>
-                  <div class="line-sm" style="width:30px; background:var(--wf-line);"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:50%; background:#93C5FD;"></div></div>
-              </div>
-              <!-- Carbs -->
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                  <div class="sublabel">Carbohydrates</div>
-                  <div class="line-sm" style="width:30px; background:var(--wf-line);"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:35%; background:#86EFAC;"></div></div>
-              </div>
-              <!-- Fat -->
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-                  <div class="sublabel">Fat</div>
-                  <div class="line-sm" style="width:30px; background:var(--wf-line);"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:25%; background:#FCA5A5;"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Activity level -->
-          <div>
-            <div class="label" style="margin-bottom:6px;">Activity Level</div>
-            <div class="chip-row">
-              <div class="chip">Sedentary</div>
-              <div class="chip selected">Lightly Active</div>
-              <div class="chip">Active</div>
-              <div class="chip">Very Active</div>
-            </div>
-          </div>
-
-          <div class="btn-primary"><div class="line" style="width:80px;"></div></div>
         </div>
       </div>
+      <div class="screen-label">Screen 2 — Set Goals</div>
     </div>
 
-    <div class="annotation-col">
+    <div class="ann-col">
       <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Calorie Presets</strong>Common goal cards (e.g. 2000, 2500, 3000 kcal) with a slider for custom entry.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Macro Sliders</strong>Sliders sum to 100%. Changing one auto-adjusts others proportionally.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Activity Level</strong>Adjusts TDEE estimate. Shown as selectable chips to avoid number-entry friction.</div>
-      </div>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Stepper inputs</strong>+/– buttons prevent typos; the value adapts to activity level as a suggestion, not a lock.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Activity level</strong>Tapping a chip auto-adjusts the calorie goal using the Harris-Benedict TDEE formula.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Step indicator</strong>Three-step onboarding — goals, dietary restrictions, dining hall preference.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 3 · HOME DASHBOARD
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-home" class="screen-area" style="display:none;">
+<!-- ══════════════════════════════════════════════════
+     3 · TODAY (HOME DASHBOARD)
+     ══════════════════════════════════════════════════ -->
+<div id="s-home" class="screen-area" style="display:none">
   <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 3 — Home Dashboard</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="nav-bar">
-          <div class="logo-text">BuffPlate</div>
-          <div style="display:flex; gap:8px; margin-left:auto;">
-            <div class="icon-btn"></div>
-            <div class="avatar"></div>
-          </div>
-        </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding:60px 20px 0;">
 
-        <div class="section" style="gap:12px;">
-
-          <!-- Greeting -->
-          <div style="display:flex; flex-direction:column; gap:4px;">
-            <div class="line-lg" style="width:160px;"></div>
-            <div class="line-sm" style="width:200px;"></div>
-          </div>
-
-          <!-- Macro summary card -->
-          <div class="wf-card" style="padding:12px;">
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:10px;">
-              <div class="label">Today's Progress</div>
-              <span class="ann">1</span>
-            </div>
-            <div class="ring-row" style="justify-content:space-around;">
-              <div class="ring-item">
-                <div class="ring cal"><div class="ring-inner">1240</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Cal</div>
-              </div>
-              <div class="ring-item">
-                <div class="ring protein"><div class="ring-inner">82g</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Protein</div>
-              </div>
-              <div class="ring-item">
-                <div class="ring carbs"><div class="ring-inner">140g</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Carbs</div>
-              </div>
-              <div class="ring-item">
-                <div class="ring fat"><div class="ring-inner">38g</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Fat</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Open Dining Halls -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Open Dining Halls</div>
-              <span class="ann">2</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div class="img-box" style="width:36px;height:36px;">WMC</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-                  <div class="line" style="width:100px;"></div>
-                  <div class="line-sm" style="width:70px;"></div>
-                </div>
-                <div class="chip selected" style="font-size:0.55rem;">Open</div>
-              </div>
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div class="img-box" style="width:36px;height:36px;">CFL</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-                  <div class="line" style="width:90px;"></div>
-                  <div class="line-sm" style="width:60px;"></div>
-                </div>
-                <div class="chip" style="font-size:0.55rem;">Closed</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CTA -->
-          <div style="display:flex; align-items:center; gap:6px;">
-            <div class="btn-primary" style="flex:1;"><div class="line" style="width:100px;"></div></div>
-            <span class="ann">3</span>
-          </div>
-
-        </div>
-
-        <div class="bottom-nav">
-          <div class="bottom-nav-item active"><div class="nav-icon"></div>Home</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Plan</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Market</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Profile</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="annotation-col">
-      <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Macro Rings</strong>Each ring shows current vs. goal. Pulled from logged meals for today.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Dining Hall Status</strong>Live status from Nutrislice API. Shows open hours and current meal period.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Generate Meal Plan</strong>Primary CTA routes to the Meal Generator screen (Screen 4).</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 4 · MEAL GENERATOR
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-generator" class="screen-area" style="display:none;">
-  <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 4 — Meal Generator</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="nav-bar">
-          <div class="back-btn"></div>
-          <div style="flex:1; display:flex; flex-direction:column; gap:3px; padding:0 8px;">
-            <div class="line" style="width:120px;"></div>
-          </div>
-        </div>
-
-        <div class="section" style="gap:14px;">
-
-          <!-- Dining Hall selector -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:6px;">
-              <div class="label">Dining Hall</div>
-              <span class="ann">1</span>
-            </div>
-            <div class="input-field" style="justify-content:space-between;">
-              <div class="line" style="width:100px;"></div>
-              <div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div>
-            </div>
-          </div>
-
-          <!-- Meal period -->
-          <div>
-            <div class="label" style="margin-bottom:6px;">Meal Period</div>
-            <div style="display:flex; gap:6px;">
-              <div class="wf-card" style="flex:1; padding:8px; text-align:center;">
-                <div class="line-sm" style="width:50px; margin:auto;"></div>
-              </div>
-              <div class="wf-card" style="flex:1; padding:8px; text-align:center; border-color:var(--accent); background:var(--accent-lt);">
-                <div class="line-sm" style="width:40px; margin:auto; background:var(--accent);"></div>
-              </div>
-              <div class="wf-card" style="flex:1; padding:8px; text-align:center;">
-                <div class="line-sm" style="width:44px; margin:auto;"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Remaining macros -->
-          <div class="wf-card" style="padding:10px 12px;">
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Remaining Today</div>
-              <span class="ann">2</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:5px;">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div class="sublabel">Calories</div>
-                <div class="line-sm" style="width:50px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div class="sublabel">Protein</div>
-                <div class="line-sm" style="width:40px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div class="sublabel">Carbs</div>
-                <div class="line-sm" style="width:35px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div class="sublabel">Fat</div>
-                <div class="line-sm" style="width:30px;"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mood / Preference tags -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:6px;">
-              <div class="label">What are you in the mood for?</div>
-              <span class="ann">3</span>
-            </div>
-            <div class="chip-row">
-              <div class="chip selected">High Protein</div>
-              <div class="chip">Comfort Food</div>
-              <div class="chip selected">Spicy</div>
-              <div class="chip">Light</div>
-              <div class="chip">Vegetarian</div>
-              <div class="chip">Vegan</div>
-              <div class="chip">Gluten-Free</div>
-            </div>
-          </div>
-
-          <div class="btn-primary"><div class="line" style="width:110px;"></div></div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="annotation-col">
-      <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Dining Hall Picker</strong>Populates from Nutrislice API. Only shows halls open for the selected meal period.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Remaining Macros</strong>Calculated from today's logged meals. The generator targets this remaining budget.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Mood Tags</strong>Multi-select. Sent alongside macro targets to the AI meal recommendation engine.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 5 · MEAL RESULTS
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-results" class="screen-area" style="display:none;">
-  <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 5 — Meal Results</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="nav-bar">
-          <div class="back-btn"></div>
-          <div style="flex:1; padding:0 8px;">
-            <div class="line" style="width:130px;"></div>
-          </div>
-          <div class="icon-btn"></div>
-        </div>
-
-        <div class="section" style="gap:12px;">
-
-          <!-- Macro match badge -->
-          <div style="display:flex; align-items:center; gap:6px;">
-            <div class="chip selected" style="font-size:0.6rem;">Macro Match: 94%</div>
-            <span class="ann">1</span>
-          </div>
-
-          <!-- Macro bar breakdown -->
-          <div class="wf-card" style="padding:12px;">
-            <div class="label" style="margin-bottom:8px;">Nutritional Breakdown</div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
+            <header style="display:flex;align-items:center;justify-content:space-between;height:56px">
               <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-                  <div class="sublabel">Calories</div>
-                  <div class="line-sm" style="width:55px;"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:72%; background:#FCD34D;"></div></div>
+                <div style="font-size:13px;color:var(--fg-2);font-weight:500">Thursday, October 22</div>
+                <h1 class="fraunces" style="font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin-top:2px">Good afternoon, Sam</h1>
               </div>
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-                  <div class="sublabel">Protein</div>
-                  <div class="line-sm" style="width:40px;"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:88%; background:#93C5FD;"></div></div>
-              </div>
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-                  <div class="sublabel">Carbs</div>
-                  <div class="line-sm" style="width:40px;"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:60%; background:#86EFAC;"></div></div>
-              </div>
-              <div>
-                <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
-                  <div class="sublabel">Fat</div>
-                  <div class="line-sm" style="width:35px;"></div>
-                </div>
-                <div class="progress-track"><div class="progress-fill" style="width:45%; background:#FCA5A5;"></div></div>
-              </div>
-            </div>
-          </div>
+              <div aria-hidden="true" style="width:44px;height:44px;border-radius:22px;background:var(--dark-lt);color:var(--dark);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;flex-shrink:0">S</div>
+            </header>
 
-          <!-- Food items -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Suggested Items</div>
-              <span class="ann">2</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div class="img-box" style="width:42px;height:42px;">IMG</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-                  <div class="line" style="width:120px;"></div>
-                  <div class="line-sm" style="width:80px;"></div>
+            <!-- Progress card -->
+            <section aria-label="Today's progress" style="margin-top:20px" class="card">
+              <div style="padding:20px">
+                <div style="display:flex;align-items:center;gap:20px">
+                  <!-- Ring -->
+                  <div style="position:relative;width:104px;height:104px;flex-shrink:0">
+                    <svg width="104" height="104" viewBox="0 0 104 104" role="img" aria-label="54 percent of today's calories eaten">
+                      <circle cx="52" cy="52" r="44" fill="none" stroke="var(--track)" stroke-width="10"/>
+                      <circle cx="52" cy="52" r="44" fill="none" stroke="var(--accent)" stroke-width="10" stroke-linecap="round" stroke-dasharray="149 276.5" transform="rotate(-90 52 52)"/>
+                    </svg>
+                    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center" class="fraunces" style="font-size:24px">54%</div>
+                  </div>
+                  <div>
+                    <div style="font-size:13px;color:var(--fg-2);font-weight:500">Left for today</div>
+                    <div class="fraunces tabnum" style="font-size:36px;line-height:1.05;letter-spacing:-0.01em">1,060</div>
+                    <div style="font-size:14px;color:var(--fg-2);margin-top:2px">kcal · 1,240 of 2,300 eaten</div>
+                  </div>
                 </div>
-                <div style="display:flex; flex-direction:column; align-items:flex-end; gap:3px;">
-                  <div class="line-sm" style="width:30px;"></div>
-                  <div class="line-sm" style="width:25px; background:var(--wf-line);"></div>
-                </div>
-              </div>
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div class="img-box" style="width:42px;height:42px;">IMG</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-                  <div class="line" style="width:100px;"></div>
-                  <div class="line-sm" style="width:70px;"></div>
-                </div>
-                <div style="display:flex; flex-direction:column; align-items:flex-end; gap:3px;">
-                  <div class="line-sm" style="width:30px;"></div>
-                  <div class="line-sm" style="width:25px; background:var(--wf-line);"></div>
-                </div>
-              </div>
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div class="img-box" style="width:42px;height:42px;">IMG</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-                  <div class="line" style="width:110px;"></div>
-                  <div class="line-sm" style="width:60px;"></div>
-                </div>
-                <div style="display:flex; flex-direction:column; align-items:flex-end; gap:3px;">
-                  <div class="line-sm" style="width:30px;"></div>
-                  <div class="line-sm" style="width:25px; background:var(--wf-line);"></div>
+                <div style="margin-top:18px;display:flex;flex-direction:column;gap:14px">
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;margin-bottom:6px"><span>Protein</span><span style="color:var(--fg-2)" class="tabnum">78 / 140 g</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:56%;background:var(--protein)"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;margin-bottom:6px"><span>Carbs</span><span style="color:var(--fg-2)" class="tabnum">142 / 260 g</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:55%;background:var(--carbs)"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:500;margin-bottom:6px"><span>Fat</span><span style="color:var(--fg-2)" class="tabnum">41 / 70 g</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:59%;background:var(--fat)"></div></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </section>
 
-          <div style="display:flex; gap:8px;">
-            <div class="btn-secondary" style="flex:1;"><div class="line" style="width:70px;"></div></div>
-            <div style="display:flex; align-items:center; gap:4px; flex:1;">
-              <div class="btn-primary" style="flex:1;"><div class="line" style="width:70px;"></div></div>
-              <span class="ann">3</span>
-            </div>
-          </div>
+            <!-- Dinner suggestion -->
+            <section aria-label="Dinner suggestion" style="margin-top:16px;background:var(--dark);color:#F3F5EF;border-radius:24px;padding:20px;flex-shrink:0">
+              <div style="font-size:13px;font-weight:500;color:#B9CDBE">Dinner · Center for Community · until 8 pm</div>
+              <div class="fraunces" style="margin-top:8px;font-size:22px;line-height:1.2;letter-spacing:-0.01em">Herb chicken, wild rice and roasted vegetables</div>
+              <div style="margin-top:6px;font-size:14px;color:#B9CDBE">625 kcal · 49 g protein</div>
+              <div style="margin-top:16px;display:flex;gap:10px">
+                <a href="#" style="flex:1;height:48px;border-radius:24px;background:#F3F5EF;color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;text-decoration:none">See the plate</a>
+                <a href="#" style="height:48px;padding:0 22px;box-sizing:border-box;border-radius:24px;border:1px solid #7E9A87;color:#F3F5EF;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;text-decoration:none">Rebuild</a>
+              </div>
+            </section>
 
+            <!-- Feeling like -->
+            <section style="margin-top:16px">
+              <h2 style="font-size:14px;font-weight:600;margin-bottom:10px">Feeling like</h2>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="pill-btn">Warm</button>
+                <button class="pill-btn">Fresh</button>
+                <button class="pill-btn">Spicy</button>
+                <button class="pill-btn">Comfort</button>
+              </div>
+            </section>
+
+            <nav aria-label="Main" class="bottom-nav" style="margin-left:-20px;margin-right:-20px;padding-left:16px;padding-right:16px">
+              <a href="#" class="nav-item active"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg></span>Today</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></span>Build</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9"/></svg></span>Menu</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>Profile</a>
+            </nav>
+          </div>
         </div>
       </div>
+      <div class="screen-label">Screen 3 — Today</div>
     </div>
 
-    <div class="annotation-col">
+    <div class="ann-col">
       <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Match Score</strong>Percentage indicating how closely the suggested meal hits the user's remaining macro budget.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Suggested Items</strong>Tapping a food item navigates to Screen 6 (Food Detail). Shows item name, station, and key macros.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Log This Meal</strong>Adds all items to today's log and updates the macro rings on Home.</div>
-      </div>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Progress ring</strong>Shows calories remaining. Protein/carbs/fat bars below use distinct colors so colorblind users can distinguish them by position too.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Dinner card</strong>AI-generated suggestion from Nutrislice menu pulled live. "Rebuild" re-runs the generator with different mood inputs.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Feeling like chips</strong>One-tap shortcut to Build a Plate with a pre-selected mood filter.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 6 · FOOD ITEM DETAIL
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-detail" class="screen-area" style="display:none;">
+<!-- ══════════════════════════════════════════════════
+     4 · BUILD A PLATE (MEAL GENERATOR)
+     ══════════════════════════════════════════════════ -->
+<div id="s-build" class="screen-area" style="display:none">
   <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 6 — Food Item Detail</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="nav-bar">
-          <div class="back-btn"></div>
-          <div style="flex:1; padding:0 8px;"><div class="line" style="width:100px;"></div></div>
-          <div class="icon-btn"></div>
-        </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding:52px 20px 0;">
 
-        <!-- Hero image -->
-        <div class="img-box" style="width:100%; height:140px; border-radius:0;">Food Photo</div>
+            <header>
+              <h1 class="fraunces" style="font-size:30px;letter-spacing:-0.01em;line-height:1.1">Build your plate</h1>
+              <p style="margin:6px 0 0;font-size:15px;color:var(--fg-2)">We'll pick from what's actually being served.</p>
+            </header>
 
-        <div class="section" style="gap:12px;">
+            <!-- Hall & Meal -->
+            <section aria-label="Hall and meal" style="margin-top:18px" class="card">
+              <button style="display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 20px;box-sizing:border-box;background:transparent;border:0;font-family:inherit;font-size:15px;color:var(--fg);text-align:left;cursor:pointer">
+                <span class="row-label">Hall</span>
+                <span style="flex:1;font-weight:500">Center for Community</span>
+                <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-2)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <button style="display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 20px;box-sizing:border-box;background:transparent;border:0;border-top:1px solid var(--inner-div);font-family:inherit;font-size:15px;color:var(--fg);text-align:left;cursor:pointer">
+                <span class="row-label">Meal</span>
+                <span style="flex:1;font-weight:500">Dinner, 5 to 8 pm</span>
+                <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-2)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </section>
 
-          <!-- Item name & station -->
-          <div style="display:flex; flex-direction:column; gap:5px;">
-            <div class="line-lg" style="width:180px;"></div>
-            <div style="display:flex; gap:6px; align-items:center;">
-              <div class="chip" style="font-size:0.55rem;">Grill Station</div>
-              <div class="chip selected" style="font-size:0.55rem;">High Protein</div>
+            <!-- Targets -->
+            <section aria-label="Your targets" style="margin-top:18px">
+              <h2 style="font-size:14px;font-weight:600;margin-bottom:10px">Your targets</h2>
+              <div class="card">
+                <div class="row" style="padding-right:10px;">
+                  <span class="row-value">Calories</span>
+                  <div style="display:flex;align-items:center;gap:2px">
+                    <button class="icon-btn" aria-label="Decrease calories"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                    <span class="fraunces tabnum" style="font-size:20px;width:90px;text-align:center">620 <span style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">kcal</span></span>
+                    <button class="icon-btn" aria-label="Increase calories"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                  </div>
+                </div>
+                <div class="row" style="padding-right:10px;">
+                  <span class="row-value">Protein</span>
+                  <div style="display:flex;align-items:center;gap:2px">
+                    <button class="icon-btn" aria-label="Decrease protein"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                    <span class="fraunces tabnum" style="font-size:20px;width:90px;text-align:center">45 <span style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">g</span></span>
+                    <button class="icon-btn" aria-label="Increase protein"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Mood -->
+            <section aria-label="Feeling like" style="margin-top:18px">
+              <h2 style="font-size:14px;font-weight:600;margin-bottom:10px">Feeling like</h2>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="pill-btn on">Warm</button>
+                <button class="pill-btn">Fresh</button>
+                <button class="pill-btn">Spicy</button>
+                <button class="pill-btn on">Comfort</button>
+                <button class="pill-btn">Light</button>
+                <button class="pill-btn">Crunchy</button>
+              </div>
+            </section>
+
+            <div style="padding:20px 0 0">
+              <a href="#" class="primary-btn">Build my plate</a>
             </div>
+
+            <nav aria-label="Main" class="bottom-nav" style="margin-left:-20px;margin-right:-20px;padding-left:16px;padding-right:16px">
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg></span>Today</a>
+              <a href="#" class="nav-item active"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></span>Build</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9"/></svg></span>Menu</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>Profile</a>
+            </nav>
           </div>
-
-          <!-- Serving size -->
-          <div style="display:flex; align-items:center; gap:4px;">
-            <div class="sublabel">Serving size:</div>
-            <div class="input-field" style="width:90px; padding:5px 8px;">
-              <div class="line" style="width:30px;"></div>
-            </div>
-            <div class="sublabel">oz</div>
-            <span class="ann">1</span>
-          </div>
-
-          <!-- Nutrition facts box -->
-          <div class="wf-card" style="padding:12px;">
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Nutrition Facts</div>
-              <span class="ann">2</span>
-            </div>
-            <div class="divider" style="margin-bottom:8px;"></div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel">Calories</div><div class="line-sm" style="width:30px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel">Total Fat</div><div class="line-sm" style="width:30px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel" style="padding-left:10px;">Saturated Fat</div><div class="line-sm" style="width:25px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel">Total Carbs</div><div class="line-sm" style="width:30px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel" style="padding-left:10px;">Dietary Fiber</div><div class="line-sm" style="width:25px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel">Protein</div><div class="line-sm" style="width:30px;"></div>
-              </div>
-              <div style="display:flex; justify-content:space-between;">
-                <div class="sublabel">Sodium</div><div class="line-sm" style="width:30px;"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Allergen chips -->
-          <div>
-            <div class="label" style="margin-bottom:6px;">Allergens</div>
-            <div class="chip-row">
-              <div class="chip">Dairy</div>
-              <div class="chip">Gluten</div>
-              <div class="chip">Soy</div>
-            </div>
-          </div>
-
-          <div class="btn-primary"><div class="line" style="width:100px;"></div></div>
-
         </div>
       </div>
+      <div class="screen-label">Screen 4 — Build a Plate</div>
     </div>
 
-    <div class="annotation-col">
+    <div class="ann-col">
       <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Adjustable Serving</strong>Editing the serving size recalculates all nutrition values in real time.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Nutrition Facts</strong>Data pulled directly from Nutrislice's API for the current menu cycle.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Allergens</strong>Sourced from Nutrislice. Users can set dietary restrictions in Profile to flag items automatically.</div>
-      </div>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Hall picker</strong>Filters to dining halls open during the selected meal period, pulled from Nutrislice.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Target steppers</strong>Pre-filled from the user's remaining macro budget for the day — editable per meal.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Mood chips</strong>Multi-select. Passed alongside macro targets to the recommendation algorithm to narrow food options.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 7 · SWIPE MARKETPLACE
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-marketplace" class="screen-area" style="display:none;">
+<!-- ══════════════════════════════════════════════════
+     5 · YOUR PLATE (MEAL RESULTS)
+     ══════════════════════════════════════════════════ -->
+<div id="s-plate" class="screen-area" style="display:none">
   <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 7 — Swipe Marketplace</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="nav-bar">
-          <div class="logo-text">Market</div>
-          <div class="avatar" style="margin-left:auto;"></div>
-        </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding:52px 20px 24px;">
 
-        <div class="section" style="gap:12px;">
+            <!-- Back -->
+            <div style="display:flex;align-items:center;justify-content:space-between;height:44px;margin-left:-10px">
+              <a href="#" aria-label="Back" style="width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:var(--dark);text-decoration:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+              <span style="font-size:13px;font-weight:500;color:var(--fg-2)">Center for Community · Dinner</span>
+            </div>
 
-          <!-- Current price ticker -->
-          <div class="wf-card" style="padding:12px; display:flex; gap:12px; align-items:center;">
-            <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-              <div class="sublabel">Current Swipe Price</div>
-              <div class="line-lg" style="width:60px; background:var(--accent);"></div>
-              <div class="line-sm" style="width:80px;"></div>
-            </div>
-            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
-              <span class="ann">1</span>
-              <!-- mini sparkline -->
-              <div style="width:80px; height:30px; background:var(--wf-box); border-radius:4px; display:flex; align-items:flex-end; gap:2px; padding:4px;">
-                <div style="flex:1; height:40%; background:var(--wf-dark); border-radius:1px;"></div>
-                <div style="flex:1; height:60%; background:var(--wf-dark); border-radius:1px;"></div>
-                <div style="flex:1; height:50%; background:var(--wf-dark); border-radius:1px;"></div>
-                <div style="flex:1; height:80%; background:var(--wf-dark); border-radius:1px;"></div>
-                <div style="flex:1; height:70%; background:var(--accent); border-radius:1px;"></div>
-              </div>
-            </div>
-          </div>
+            <header style="margin-top:8px">
+              <h1 class="fraunces" style="font-size:28px;letter-spacing:-0.01em;line-height:1.1">Warm and hearty</h1>
+              <p style="margin:4px 0 0;font-size:15px;color:var(--fg-2)">Five dishes from tonight's menu.</p>
+            </header>
 
-          <!-- Buy / Sell tabs -->
-          <div style="display:flex; border:1px solid var(--wf-line); border-radius:8px; overflow:hidden;">
-            <div style="flex:1; padding:8px; background:var(--wf-btn-p); text-align:center;">
-              <div class="line" style="background:rgba(255,255,255,0.8); width:40%; margin:auto;"></div>
+            <!-- Plate illustration area -->
+            <div style="margin-top:14px;height:160px;border-radius:28px;background:#E4ECDD;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="130" height="130" viewBox="0 0 200 200" role="img" aria-label="Plate with chicken, rice, and vegetables">
+                <circle cx="100" cy="100" r="90" fill="#FFFFFF"/>
+                <circle cx="100" cy="100" r="70" fill="#F6F8F3" stroke="var(--track)" stroke-width="2"/>
+                <ellipse cx="74" cy="118" rx="36" ry="28" fill="#EFE6CB"/>
+                <ellipse cx="58" cy="112" rx="4" ry="1.6" fill="#5A4332" transform="rotate(-25 58 112)"/>
+                <ellipse cx="78" cy="108" rx="4" ry="1.6" fill="#5A4332" transform="rotate(-10 78 108)"/>
+                <ellipse cx="86" cy="124" rx="4" ry="1.6" fill="#D9C795" transform="rotate(35 86 124)"/>
+                <rect x="48" y="66" width="22" height="9" rx="4.5" fill="#E58A3C" transform="rotate(-30 59 70)"/>
+                <rect x="58" y="50" width="20" height="9" rx="4.5" fill="#EE9A4E" transform="rotate(20 68 54)"/>
+                <circle cx="84" cy="62" r="8" fill="#4F8A57"/>
+                <circle cx="93" cy="53" r="7" fill="#5E9B65"/>
+                <rect x="104" y="80" width="54" height="30" rx="15" fill="#C58A52" transform="rotate(-14 131 95)"/>
+                <rect x="112" y="102" width="44" height="26" rx="13" fill="#B97B44" transform="rotate(10 134 115)"/>
+                <path d="M118 88l20-4M120 95l22-4" stroke="#8A5A30" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                <path d="M104 138c10 4 22 2 30-6" fill="none" stroke="#6E9B4E" stroke-width="4" stroke-linecap="round"/>
+              </svg>
             </div>
-            <div style="flex:1; padding:8px; background:var(--wf-bg); text-align:center;">
-              <div class="line" style="width:40%; margin:auto;"></div>
-            </div>
-          </div>
 
-          <!-- Quantity + time selector -->
-          <div style="display:flex; gap:8px;">
-            <div style="flex:1;">
-              <div class="label" style="margin-bottom:5px;">Quantity</div>
-              <div class="input-field"><div class="line" style="width:20px;"></div><div style="margin-left:auto; display:flex; gap:4px;"><div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div><div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div></div></div>
-            </div>
-            <div style="flex:2;">
-              <div style="display:flex; align-items:center; gap:4px; margin-bottom:5px;">
-                <div class="label">Use By</div>
-                <span class="ann">2</span>
-              </div>
-              <div class="input-field" style="justify-content:space-between;"><div class="line" style="width:80px;"></div><div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div></div>
-            </div>
-          </div>
-
-          <!-- Available listings -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Available Now</div>
-              <span class="ann">3</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div style="width:28px;height:28px;background:var(--wf-img);border-radius:50%;"></div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:3px;">
-                  <div class="line" style="width:70px;"></div>
-                  <div class="line-sm" style="width:90px;"></div>
+            <!-- Macro totals -->
+            <section aria-label="Totals" style="margin-top:12px" class="card-sm">
+              <div style="padding:14px 16px">
+                <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">625</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">kcal</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:100%;height:100%;border-radius:2px;background:var(--dark)"></div></div><div style="font-size:11px;color:var(--fg-2);margin-top:4px">of 620</div></div>
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">49 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">protein</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:100%;height:100%;border-radius:2px;background:var(--protein)"></div></div><div style="font-size:11px;color:var(--fg-2);margin-top:4px">of 45 g</div></div>
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">66 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">carbs</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:94%;height:100%;border-radius:2px;background:var(--carbs)"></div></div><div style="font-size:11px;color:var(--fg-2);margin-top:4px">of 70 g</div></div>
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">20 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">fat</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:100%;height:100%;border-radius:2px;background:var(--fat)"></div></div><div style="font-size:11px;color:var(--fg-2);margin-top:4px">of 20 g</div></div>
                 </div>
-                <div class="chip selected" style="font-size:0.6rem;">$6.00</div>
               </div>
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div style="width:28px;height:28px;background:var(--wf-img);border-radius:50%;"></div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:3px;">
-                  <div class="line" style="width:60px;"></div>
-                  <div class="line-sm" style="width:80px;"></div>
-                </div>
-                <div class="chip" style="font-size:0.6rem;">$5.50</div>
-              </div>
-              <div class="wf-card" style="display:flex; align-items:center; padding:10px 12px; gap:10px;">
-                <div style="width:28px;height:28px;background:var(--wf-img);border-radius:50%;"></div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:3px;">
-                  <div class="line" style="width:80px;"></div>
-                  <div class="line-sm" style="width:70px;"></div>
-                </div>
-                <div class="chip" style="font-size:0.6rem;">$7.00</div>
-              </div>
+            </section>
+
+            <!-- Dish list -->
+            <section aria-label="Dishes" style="margin-top:12px" class="card-sm">
+              <div style="display:flex;align-items:center;gap:12px;min-height:52px;padding:0 4px 0 16px"><span aria-hidden="true" style="flex-shrink:0;width:12px;height:12px;border-radius:6px;background:#C58A52"></span><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500">Herb roasted chicken</div><div style="font-size:12px;color:var(--fg-2)">4.5 oz · 34 g protein</div></div><span class="fraunces tabnum" style="font-size:14px;font-weight:500">195 kcal</span><button class="icon-btn" style="background:transparent;color:var(--fg-2)" aria-label="Swap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 8h11l-3-3M17 16H6l3 3"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:12px;min-height:52px;padding:0 4px 0 16px;border-top:1px solid var(--inner-div)"><span aria-hidden="true" style="flex-shrink:0;width:12px;height:12px;border-radius:6px;background:#8A6A4E"></span><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500">Wild rice pilaf</div><div style="font-size:12px;color:var(--fg-2)">1 cup · 40 g carbs</div></div><span class="fraunces tabnum" style="font-size:14px;font-weight:500">200 kcal</span><button class="icon-btn" style="background:transparent;color:var(--fg-2)" aria-label="Swap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 8h11l-3-3M17 16H6l3 3"/></svg></button></div>
+              <div style="display:flex;align-items:center;gap:12px;min-height:52px;padding:0 4px 0 16px;border-top:1px solid var(--inner-div)"><span aria-hidden="true" style="flex-shrink:0;width:12px;height:12px;border-radius:6px;background:#E58A3C"></span><div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500">Roasted vegetables</div><div style="font-size:12px;color:var(--fg-2)">1 cup · 14 g carbs</div></div><span class="fraunces tabnum" style="font-size:14px;font-weight:500">95 kcal</span><button class="icon-btn" style="background:transparent;color:var(--fg-2)" aria-label="Swap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M7 8h11l-3-3M17 16H6l3 3"/></svg></button></div>
+            </section>
+
+            <div style="margin-top:auto;display:flex;gap:10px;padding-top:16px">
+              <a href="#" class="primary-btn" style="flex:1">Log this plate</a>
+              <a href="#" class="secondary-btn" style="padding:0 24px">Rebuild</a>
             </div>
           </div>
-
-        </div>
-
-        <div class="bottom-nav">
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Home</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Plan</div>
-          <div class="bottom-nav-item active"><div class="nav-icon"></div>Market</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Profile</div>
         </div>
       </div>
+      <div class="screen-label">Screen 5 — Your Plate</div>
     </div>
 
-    <div class="annotation-col">
+    <div class="ann-col">
       <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Live Price Ticker</strong>Dynamic price driven by real-time supply and demand. Sparkline shows today's price history.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Futures Mode</strong>"Use By" date/time lets buyers lock in today's price for a future swipe — protects against price spikes.</div>
-      </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Active Listings</strong>Sorted by price ascending. Buyer can see seller rating, hall, and time window per listing.</div>
-      </div>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Plate illustration</strong>SVG visualization of the actual items on the plate — colored dots correspond to dish-list color swatches below.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Macro bar per item</strong>Each dish's calorie count contributes to the totals grid. Bar fills show hit vs. target.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Swap button</strong>Replaces that item with another from the same hall's menu that fits the remaining macro budget.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════
-     SCREEN 8 · PROFILE
-     ══════════════════════════════════════════════════════ -->
-<div id="screen-profile" class="screen-area" style="display:none;">
+<!-- ══════════════════════════════════════════════════
+     6 · FOOD DETAIL
+     ══════════════════════════════════════════════════ -->
+<div id="s-detail" class="screen-area" style="display:none">
   <div class="screen-wrap active">
-    <div class="screen-card">
-      <div class="screen-label">Screen 8 — Profile & My Day</div>
-      <div class="wf">
-        <div class="phone-bar">
-          <span>9:41</span>
-          <div class="status-dots"><span></span><span></span><span></span></div>
-        </div>
-        <div class="nav-bar">
-          <div class="logo-text">Profile</div>
-          <div class="icon-btn" style="margin-left:auto;"></div>
-        </div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding:52px 20px 24px;">
 
-        <div class="section" style="gap:12px;">
+            <!-- Back -->
+            <div style="display:flex;align-items:center;height:44px;margin-left:-10px;gap:8px">
+              <a href="#" aria-label="Back" style="width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:var(--dark);text-decoration:none;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+              <span style="font-size:13px;font-weight:500;color:var(--fg-2)">Grill · Center for Community</span>
+            </div>
 
-          <!-- Avatar + name -->
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div class="img-box" style="width:52px;height:52px;border-radius:50%;">AVT</div>
-            <div style="flex:1; display:flex; flex-direction:column; gap:5px;">
-              <div class="line-lg" style="width:120px;"></div>
-              <div class="line-sm" style="width:160px;"></div>
-            </div>
-            <div class="icon-btn"></div>
-          </div>
+            <header style="margin-top:8px">
+              <div style="display:flex;align-items:flex-start;gap:8px">
+                <h1 class="fraunces" style="flex:1;font-size:28px;letter-spacing:-0.01em;line-height:1.1">Herb roasted chicken</h1>
+              </div>
+              <div style="display:flex;gap:6px;margin-top:8px">
+                <span class="tag">High protein</span>
+                <span class="tag">Gluten-free</span>
+              </div>
+            </header>
 
-          <!-- Daily goal summary -->
-          <div class="wf-card" style="padding:12px;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
-              <div class="label">Today's Goals</div>
-              <div class="line-sm" style="width:40px; background:var(--accent);"></div>
-            </div>
-            <div class="ring-row" style="justify-content:space-around;">
-              <div class="ring-item">
-                <div class="ring cal"><div class="ring-inner">72%</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Calories</div>
-              </div>
-              <div class="ring-item">
-                <div class="ring protein"><div class="ring-inner">88%</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Protein</div>
-              </div>
-              <div class="ring-item">
-                <div class="ring carbs"><div class="ring-inner">60%</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Carbs</div>
-              </div>
-              <div class="ring-item">
-                <div class="ring fat"><div class="ring-inner">45%</div></div>
-                <div class="sublabel" style="font-size:0.55rem;">Fat</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Meals logged today -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Logged Today</div>
-              <span class="ann">1</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
-              <div class="wf-card" style="padding:10px 12px; display:flex; gap:10px; align-items:center;">
-                <div class="chip" style="font-size:0.55rem; flex-shrink:0;">Breakfast</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:3px;">
-                  <div class="line" style="width:120px;"></div>
-                  <div class="line-sm" style="width:80px;"></div>
+            <!-- Serving size row -->
+            <div style="margin-top:16px;display:flex;align-items:center;gap:10px" class="card">
+              <div style="padding:0 20px;display:flex;align-items:center;gap:10px;height:56px;width:100%">
+                <span style="font-size:15px;font-weight:500;flex:1">Serving size</span>
+                <div style="display:flex;align-items:center;gap:4px">
+                  <button class="icon-btn" aria-label="Decrease serving"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+                  <span class="fraunces tabnum" style="font-size:20px;width:76px;text-align:center">4.5 <span style="font-family:'Figtree',system-ui,sans-serif;font-size:13px;color:var(--fg-2)">oz</span></span>
+                  <button class="icon-btn" aria-label="Increase serving"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
                 </div>
-                <div class="icon-btn" style="width:20px;height:20px;"></div>
               </div>
-              <div class="wf-card" style="padding:10px 12px; display:flex; gap:10px; align-items:center;">
-                <div class="chip" style="font-size:0.55rem; flex-shrink:0;">Lunch</div>
-                <div style="flex:1; display:flex; flex-direction:column; gap:3px;">
-                  <div class="line" style="width:100px;"></div>
-                  <div class="line-sm" style="width:70px;"></div>
+            </div>
+
+            <!-- Macro grid -->
+            <section aria-label="Nutrition" style="margin-top:12px" class="card-sm">
+              <div style="padding:14px 16px">
+                <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">195</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">kcal</div></div>
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">34 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">protein</div></div>
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">0 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">carbs</div></div>
+                  <div><div class="fraunces tabnum" style="font-size:22px;line-height:1.1">8 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">fat</div></div>
                 </div>
-                <div class="icon-btn" style="width:20px;height:20px;"></div>
               </div>
+            </section>
+
+            <!-- Full nutrition facts -->
+            <section aria-label="Full nutrition" style="margin-top:12px" class="card">
+              <div class="row"><span class="row-value" style="font-size:14px">Sodium</span><span class="fraunces tabnum" style="font-size:14px">310 mg</span></div>
+              <div class="row"><span class="row-value" style="font-size:14px">Saturated fat</span><span class="fraunces tabnum" style="font-size:14px">2 g</span></div>
+              <div class="row"><span class="row-value" style="font-size:14px">Fiber</span><span class="fraunces tabnum" style="font-size:14px">0 g</span></div>
+              <div class="row"><span class="row-value" style="font-size:14px">Sugar</span><span class="fraunces tabnum" style="font-size:14px">0 g</span></div>
+            </section>
+
+            <!-- Allergens -->
+            <div style="margin-top:16px">
+              <h2 style="font-size:14px;font-weight:600;margin-bottom:8px">Allergens</h2>
+              <div style="display:flex;gap:8px">
+                <span class="tag">Dairy</span>
+                <span class="tag">Soy</span>
+              </div>
+            </div>
+
+            <div style="margin-top:auto;padding-top:16px">
+              <a href="#" class="primary-btn">Add to plate</a>
             </div>
           </div>
-
-          <!-- Settings links -->
-          <div>
-            <div style="display:flex; align-items:center; gap:4px; margin-bottom:8px;">
-              <div class="label">Settings</div>
-              <span class="ann">2</span>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:1px; border:1px solid var(--wf-line); border-radius:8px; overflow:hidden;">
-              <div style="padding:11px 14px; display:flex; justify-content:space-between; align-items:center; background:var(--surface);">
-                <div class="line" style="width:110px;"></div>
-                <div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div>
-              </div>
-              <div style="height:1px; background:var(--wf-line);"></div>
-              <div style="padding:11px 14px; display:flex; justify-content:space-between; align-items:center; background:var(--surface);">
-                <div class="line" style="width:80px;"></div>
-                <div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div>
-              </div>
-              <div style="height:1px; background:var(--wf-line);"></div>
-              <div style="padding:11px 14px; display:flex; justify-content:space-between; align-items:center; background:var(--surface);">
-                <div class="line" style="width:130px;"></div>
-                <div style="width:10px;height:10px;background:var(--wf-img);border-radius:2px;"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="bottom-nav">
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Home</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Plan</div>
-          <div class="bottom-nav-item"><div class="nav-icon"></div>Market</div>
-          <div class="bottom-nav-item active"><div class="nav-icon"></div>Profile</div>
         </div>
       </div>
+      <div class="screen-label">Screen 6 — Food Detail</div>
     </div>
 
-    <div class="annotation-col">
+    <div class="ann-col">
       <h3>Notes</h3>
-      <div class="annotation-item">
-        <div class="annotation-num">1</div>
-        <div class="annotation-text"><strong>Meal Log</strong>Each entry can be tapped to edit or remove. Calorie/macro counts update the rings above live.</div>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Serving stepper</strong>Adjusting serving size recalculates all nutrition values in real time before the item is added to the plate.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Nutrition data</strong>Sourced from Nutrislice's API for the current menu cycle — same data the dining halls publish.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Allergen flags</strong>Users set dietary restrictions in Profile; allergens that match are highlighted in red on this screen.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     7 · SWIPE MARKETPLACE
+     ══════════════════════════════════════════════════ -->
+<div id="s-market" class="screen-area" style="display:none">
+  <div class="screen-wrap active">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding:60px 20px 0;">
+
+            <header>
+              <h1 class="fraunces" style="font-size:30px;letter-spacing:-0.01em;line-height:1.1">Swipe market</h1>
+              <p style="margin:6px 0 0;font-size:15px;color:var(--fg-2)">Buy or sell unused dining swipes.</p>
+            </header>
+
+            <!-- Price ticker — dark card like dinner suggestion -->
+            <section aria-label="Current price" style="margin-top:18px;background:var(--dark);color:#F3F5EF;border-radius:24px;padding:20px;flex-shrink:0">
+              <div style="font-size:13px;font-weight:500;color:#B9CDBE">Current market price</div>
+              <div style="display:flex;align-items:flex-end;gap:12px;margin-top:6px">
+                <div class="fraunces tabnum" style="font-size:42px;line-height:1;letter-spacing:-0.02em">$6.50</div>
+                <div style="margin-bottom:6px;font-size:13px;color:#7FAA5C">▲ $0.25 today</div>
+              </div>
+              <!-- Mini sparkline -->
+              <div style="margin-top:14px;display:flex;align-items:flex-end;gap:3px;height:32px">
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:40%"></div>
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:55%"></div>
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:45%"></div>
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:70%"></div>
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:60%"></div>
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:65%"></div>
+                <div style="flex:1;background:rgba(255,255,255,.2);border-radius:2px;height:50%"></div>
+                <div style="flex:1;background:#B9CDBE;border-radius:2px;height:100%"></div>
+              </div>
+              <div style="margin-top:8px;font-size:12px;color:#7E9A87">Last 8 hours</div>
+            </section>
+
+            <!-- Buy / Sell toggle -->
+            <div style="margin-top:16px;display:flex;background:var(--surface);border-radius:24px;overflow:hidden;box-shadow:var(--card-shadow)">
+              <button style="flex:1;height:48px;background:var(--dark);border:0;border-radius:22px;font-family:inherit;font-size:15px;font-weight:600;color:#F3F5EF;margin:3px;cursor:pointer">Buy a swipe</button>
+              <button style="flex:1;height:48px;background:transparent;border:0;font-family:inherit;font-size:15px;font-weight:500;color:var(--fg-2);cursor:pointer">Sell a swipe</button>
+            </div>
+
+            <!-- Listings -->
+            <section aria-label="Available listings" style="margin-top:16px">
+              <h2 style="font-size:13px;font-weight:600;color:var(--fg-2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px 4px">Available now</h2>
+              <div class="card">
+                <div style="display:flex;align-items:center;gap:12px;min-height:68px;padding:12px 8px 12px 16px">
+                  <div style="width:36px;height:36px;border-radius:18px;background:var(--dark-lt);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0">M</div>
+                  <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500">WMC · Dinner</div><div style="font-size:13px;color:var(--fg-2)">Valid today, 5–8 pm</div></div>
+                  <span class="fraunces tabnum" style="font-size:17px;font-weight:500;color:var(--accent)">$6.00</span>
+                  <button style="flex-shrink:0;height:36px;padding:0 14px;border-radius:18px;background:var(--tag-bg);border:0;font-family:inherit;font-size:13px;font-weight:600;color:var(--dark);cursor:pointer">Buy</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;min-height:68px;padding:12px 8px 12px 16px;border-top:1px solid var(--inner-div)">
+                  <div style="width:36px;height:36px;border-radius:18px;background:var(--dark-lt);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0">K</div>
+                  <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500">CFL · Lunch</div><div style="font-size:13px;color:var(--fg-2)">Valid tomorrow, 11 am–2 pm</div></div>
+                  <span class="fraunces tabnum" style="font-size:17px;font-weight:500;color:var(--accent)">$5.50</span>
+                  <button style="flex-shrink:0;height:36px;padding:0 14px;border-radius:18px;background:var(--tag-bg);border:0;font-family:inherit;font-size:13px;font-weight:600;color:var(--dark);cursor:pointer">Buy</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;min-height:68px;padding:12px 8px 12px 16px;border-top:1px solid var(--inner-div)">
+                  <div style="width:36px;height:36px;border-radius:18px;background:var(--dark-lt);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0">A</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="display:flex;align-items:center;gap:6px"><span style="font-size:15px;font-weight:500">WMC · Dinner</span><span class="tag" style="font-size:11px">Futures</span></div>
+                    <div style="font-size:13px;color:var(--fg-2)">Fri, Oct 25 · locked at today's price</div>
+                  </div>
+                  <span class="fraunces tabnum" style="font-size:17px;font-weight:500;color:var(--accent)">$6.50</span>
+                  <button style="flex-shrink:0;height:36px;padding:0 14px;border-radius:18px;background:var(--tag-bg);border:0;font-family:inherit;font-size:13px;font-weight:600;color:var(--dark);cursor:pointer">Buy</button>
+                </div>
+              </div>
+            </section>
+
+            <nav aria-label="Main" class="bottom-nav" style="margin-left:-20px;margin-right:-20px;padding-left:16px;padding-right:16px">
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg></span>Today</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></span>Build</a>
+              <a href="#" class="nav-item active"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 17l5-5 4 4 5-6 4 4"/></svg></span>Market</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>Profile</a>
+            </nav>
+          </div>
+        </div>
       </div>
-      <div class="annotation-item">
-        <div class="annotation-num">2</div>
-        <div class="annotation-text"><strong>Settings</strong>Rows include: Edit Macro Goals, Dietary Restrictions, Notification Preferences, Sign Out.</div>
+      <div class="screen-label">Screen 7 — Swipe Market</div>
+    </div>
+
+    <div class="ann-col">
+      <h3>Notes</h3>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Live price ticker</strong>Dynamic price driven by real-time supply and demand. Sparkline shows today's price history.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Buy / Sell toggle</strong>Switches the listing view: Buy shows available swipes; Sell shows a form to list your own.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Futures listing</strong>Seller locks in today's price for a future date. Buyer gets price certainty; seller gets upside if demand grows.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     8 · PROFILE
+     ══════════════════════════════════════════════════ -->
+<div id="s-profile" class="screen-area" style="display:none">
+  <div class="screen-wrap active">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="app-screen" style="padding:60px 20px 0;">
+
+            <header style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+              <div style="width:52px;height:52px;border-radius:26px;background:var(--dark-lt);color:var(--dark);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:20px;flex-shrink:0">S</div>
+              <div>
+                <h1 class="fraunces" style="font-size:22px;letter-spacing:-0.01em;line-height:1.1">Sam Rivera</h1>
+                <div style="font-size:13px;color:var(--fg-2);margin-top:2px">sam.rivera@colorado.edu</div>
+              </div>
+            </header>
+
+            <!-- Today's totals -->
+            <section aria-label="Today's totals" class="card-sm">
+              <div style="padding:14px 16px">
+                <div style="font-size:13px;font-weight:600;color:var(--fg-2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px">Today</div>
+                <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+                  <div><div class="fraunces tabnum" style="font-size:20px;line-height:1.1">1,240</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">kcal</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:54%;height:100%;border-radius:2px;background:var(--dark)"></div></div></div>
+                  <div><div class="fraunces tabnum" style="font-size:20px;line-height:1.1">78 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">protein</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:56%;height:100%;border-radius:2px;background:var(--protein)"></div></div></div>
+                  <div><div class="fraunces tabnum" style="font-size:20px;line-height:1.1">142 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">carbs</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:55%;height:100%;border-radius:2px;background:var(--carbs)"></div></div></div>
+                  <div><div class="fraunces tabnum" style="font-size:20px;line-height:1.1">41 g</div><div style="font-size:12px;font-weight:500;color:var(--fg-2);margin-top:2px">fat</div><div style="margin-top:6px;height:4px;border-radius:2px;background:var(--track)"><div style="width:59%;height:100%;border-radius:2px;background:var(--fat)"></div></div></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Logged meals -->
+            <section aria-label="Logged meals" style="margin-top:14px">
+              <h2 style="font-size:13px;font-weight:600;color:var(--fg-2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px 4px">Logged today</h2>
+              <div class="card">
+                <div style="display:flex;align-items:center;gap:12px;min-height:60px;padding:0 8px 0 16px">
+                  <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--fg-2)">Breakfast</div><div style="font-size:15px;font-weight:500;margin-top:1px">Eggs, oatmeal, orange juice</div></div>
+                  <span class="fraunces tabnum" style="font-size:14px;font-weight:500;color:var(--fg-2)">615 kcal</span>
+                  <button class="icon-btn" style="background:transparent;color:var(--fg-2)" aria-label="Edit breakfast"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;min-height:60px;padding:0 8px 0 16px;border-top:1px solid var(--inner-div)">
+                  <div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:600;color:var(--fg-2)">Lunch</div><div style="font-size:15px;font-weight:500;margin-top:1px">Grilled salmon, wild rice, green beans</div></div>
+                  <span class="fraunces tabnum" style="font-size:14px;font-weight:500;color:var(--fg-2)">625 kcal</span>
+                  <button class="icon-btn" style="background:transparent;color:var(--fg-2)" aria-label="Edit lunch"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Settings rows -->
+            <section aria-label="Settings" style="margin-top:14px">
+              <h2 style="font-size:13px;font-weight:600;color:var(--fg-2);letter-spacing:.06em;text-transform:uppercase;margin:0 0 8px 4px">Settings</h2>
+              <div class="card">
+                <div class="row"><span class="row-value">Macro goals</span><svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-2)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+                <div class="row"><span class="row-value">Dietary restrictions</span><svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-2)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+                <div class="row"><span class="row-value">Notifications</span><svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fg-2)" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></div>
+                <div class="row"><span class="row-value" style="color:#C0392B">Sign out</span></div>
+              </div>
+            </section>
+
+            <nav aria-label="Main" class="bottom-nav" style="margin-left:-20px;margin-right:-20px;padding-left:16px;padding-right:16px">
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg></span>Today</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></span>Build</a>
+              <a href="#" class="nav-item"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 17l5-5 4 4 5-6 4 4"/></svg></span>Market</a>
+              <a href="#" class="nav-item active"><span class="nav-pill"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>Profile</a>
+            </nav>
+          </div>
+        </div>
       </div>
-      <div class="annotation-item">
-        <div class="annotation-num">3</div>
-        <div class="annotation-text"><strong>Progress Rings</strong>Same component as Home Dashboard — shows cumulative progress for the full day.</div>
-      </div>
+      <div class="screen-label">Screen 8 — Profile</div>
+    </div>
+
+    <div class="ann-col">
+      <h3>Notes</h3>
+      <div class="ann-item"><div class="ann-num">1</div><div class="ann-text"><strong>Today's totals</strong>Same macro grid component from Screen 5. Consistent data across the app; tapping a bar navigates to the detailed log.</div></div>
+      <div class="ann-item"><div class="ann-num">2</div><div class="ann-text"><strong>Logged meals</strong>Each entry can be tapped to edit items or remove the meal from today's log.</div></div>
+      <div class="ann-item"><div class="ann-num">3</div><div class="ann-text"><strong>Dietary restrictions</strong>Settings row opens a screen to flag allergens; flagged items appear highlighted on Screen 6 (Food Detail).</div></div>
     </div>
   </div>
 </div>
 
 <script>
-const screens = {
-  login:       'screen-login',
-  onboard:     'screen-onboard',
-  home:        'screen-home',
-  generator:   'screen-generator',
-  results:     'screen-results',
-  detail:      'screen-detail',
-  marketplace: 'screen-marketplace',
-  profile:     'screen-profile',
+const map = {
+  login: 's-login', onboard: 's-onboard', home: 's-home',
+  build: 's-build', plate: 's-plate', detail: 's-detail',
+  market: 's-market', profile: 's-profile'
 };
-
-function showTab(key) {
-  // Hide all screens
-  Object.values(screens).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
+function show(key) {
+  Object.values(map).forEach(id => { document.getElementById(id).style.display = 'none'; });
+  document.getElementById(map[key]).style.display = 'flex';
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', i === Object.keys(map).indexOf(key));
   });
-
-  // Show selected
-  const target = document.getElementById(screens[key]);
-  if (target) target.style.display = 'flex';
-
-  // Update tab active state
-  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-    btn.classList.remove('active');
-  });
-  const idx = Object.keys(screens).indexOf(key);
-  document.querySelectorAll('.tab-btn')[idx]?.classList.add('active');
 }
 </script>
-
 </body>
 </html>
