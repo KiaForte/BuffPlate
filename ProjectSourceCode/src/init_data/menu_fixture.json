@@ -1,129 +1,196 @@
 {
-  "start_date": "2026-10-27",
+  "start_date": "2026-10-26",
   "days": [
     {
-      "date": "2026-10-27",
+      "date": "2026-10-26",
       "menu_items": [
-        { "is_section_title": true, "text": "The Grange: B.Y.O Burrito, Bowl, or Taco" },
         {
+          "id": 197943170,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "Middleterranean",
+          "station_id": 5328
+        },
+        {
+          "id": 197943171,
           "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "station_id": 5328,
           "food": {
-            "name": "Seasoned Ground Beef",
+            "name": "Shredded Jackfruit Shawrma",
             "rounded_nutrition_info": {
-              "calories": 210,
-              "g_protein": 18,
-              "g_carbs": 2,
-              "g_fat": 14,
-              "g_fiber": 0,
-              "g_sugar": 0,
-              "mg_sodium": 380
+              "calories": 160.0,
+              "g_fat": 7.0,
+              "g_carbs": 19.0,
+              "g_sugar": 1.0,
+              "mg_sodium": 284.0,
+              "g_fiber": 16.0,
+              "g_protein": 4.0
             },
-            "serving_size_info": { "serving_size_amount": "3", "serving_size_unit": "oz" },
-            "icons": ["Gluten-Free"]
+            "serving_size_info": {
+              "serving_size_amount": "6",
+              "serving_size_unit": "oz"
+            },
+            "icons": {
+              "food_icons": [
+                { "name": "Smart Pick", "type": 1 },
+                { "name": "Vegan", "type": 1 }
+              ]
+            }
           }
         },
         {
+          "id": 197943172,
           "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "station_id": 5328,
           "food": {
-            "name": "Black Beans",
+            "name": "Roasted Cauliflower",
             "rounded_nutrition_info": {
-              "calories": 110,
-              "g_protein": 7,
-              "g_carbs": 20,
-              "g_fat": 1,
-              "g_fiber": 7,
-              "g_sugar": 1,
-              "mg_sodium": 190
+              "calories": 96.0,
+              "g_fat": 7.0,
+              "g_carbs": 7.0,
+              "g_protein": 3.0,
+              "mg_sodium": 288.0,
+              "g_fiber": 3.0,
+              "g_sugar": 2.0
             },
-            "serving_size_info": { "serving_size_amount": "1/2", "serving_size_unit": "cup" },
-            "icons": ["Vegan", "Gluten-Free"]
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "1/2 cup serving"
+            },
+            "icons": {
+              "food_icons": [
+                { "name": "Smart Pick", "type": 1 },
+                { "name": "Vegan", "type": 1 }
+              ]
+            }
           }
         },
         {
+          "id": 197943173,
           "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "station_id": 5328,
           "food": {
-            "name": "Flour Tortilla",
+            "name": "Steamed Brown Rice",
             "rounded_nutrition_info": {
-              "calories": 150,
-              "g_protein": 4,
-              "g_carbs": 27,
-              "g_fat": 3,
-              "g_fiber": 1,
-              "g_sugar": 1,
-              "mg_sodium": 310
+              "calories": 145.0,
+              "g_fat": 1.1,
+              "g_carbs": 30.0,
+              "g_protein": 3.0,
+              "mg_sodium": 22.0,
+              "g_fiber": 2.0,
+              "g_sugar": 0.0
             },
-            "serving_size_info": { "serving_size_amount": "1", "serving_size_unit": "each" },
-            "icons": []
-          }
-        },
-        { "is_section_title": true, "text": "Grill" },
-        {
-          "is_section_title": false,
-          "food": {
-            "name": "Herb Roasted Chicken",
-            "rounded_nutrition_info": {
-              "calories": 195,
-              "g_protein": 34,
-              "g_carbs": 0,
-              "g_fat": 8,
-              "g_fiber": 0,
-              "g_sugar": 0,
-              "mg_sodium": 310
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "1/2 cup serving"
             },
-            "serving_size_info": { "serving_size_amount": "4.5", "serving_size_unit": "oz" },
-            "icons": ["Gluten-Free", "Smart Pick"]
+            "icons": {
+              "food_icons": [
+                { "name": "Smart Pick", "type": 1 },
+                { "name": "Vegan", "type": 1 }
+              ]
+            }
           }
         },
         {
+          "id": 197943174,
           "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "station_id": 5328,
           "food": {
-            "name": "Grilled Salmon",
+            "name": "Hummus",
             "rounded_nutrition_info": {
-              "calories": 230,
-              "g_protein": 25,
-              "g_carbs": 0,
-              "g_fat": 14,
-              "g_fiber": null,
-              "g_sugar": null,
-              "mg_sodium": 280
+              "calories": 138.0,
+              "g_fat": 11.0,
+              "g_carbs": 7.0,
+              "g_protein": 3.0,
+              "mg_sodium": 113.0,
+              "g_fiber": 2.0,
+              "g_sugar": 1.0
             },
-            "serving_size_info": { "serving_size_amount": "4", "serving_size_unit": "oz" },
-            "icons": ["Gluten-Free"]
-          }
-        },
-        { "is_section_title": true, "text": "Global Kitchen" },
-        {
-          "is_section_title": false,
-          "food": {
-            "name": "Chickpea Tikka Masala",
-            "rounded_nutrition_info": {
-              "calories": 260,
-              "g_protein": 11,
-              "g_carbs": 32,
-              "g_fat": 10,
-              "g_fiber": 7,
-              "g_sugar": 8,
-              "mg_sodium": 520
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "1/4 cup serving"
             },
-            "serving_size_info": { "serving_size_amount": "1", "serving_size_unit": "cup" },
-            "icons": ["Vegan"]
+            "icons": {
+              "food_icons": [
+                { "name": "Sesame", "type": 1 },
+                { "name": "Smart Pick", "type": 1 },
+                { "name": "Vegan", "type": 1 }
+              ]
+            }
           }
         },
         {
+          "id": 197943175,
           "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "station_id": 5328,
           "food": {
-            "name": "Wild Rice Pilaf",
+            "name": "Baby Carrots",
             "rounded_nutrition_info": {
-              "calories": 200,
-              "g_protein": 7,
-              "g_carbs": 40,
-              "g_fat": 2,
-              "g_fiber": 3,
-              "g_sugar": 1,
-              "mg_sodium": 180
+              "calories": 20.0,
+              "g_fat": 0.1,
+              "g_carbs": 5.0,
+              "g_protein": 0.0,
+              "mg_sodium": 44.0,
+              "g_fiber": 2.0,
+              "g_sugar": 3.0
             },
-            "serving_size_info": { "serving_size_amount": "1", "serving_size_unit": "cup" },
-            "icons": ["Vegan", "Gluten-Free"]
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "1/2 cup serving"
+            },
+            "icons": {
+              "food_icons": [
+                { "name": "Smart Pick", "type": 1 },
+                { "name": "Vegan", "type": 1 }
+              ]
+            }
+          }
+        },
+        {
+          "id": 197943176,
+          "is_section_title": true,
+          "is_station_header": true,
+          "text": "Evergreens: Fruit",
+          "station_id": 5327
+        },
+        {
+          "id": 197943177,
+          "is_section_title": false,
+          "is_station_header": false,
+          "text": "",
+          "station_id": 5327,
+          "food": {
+            "name": "Red Grapes",
+            "rounded_nutrition_info": {
+              "calories": 104.0,
+              "g_fat": 0.3,
+              "g_carbs": 27.0,
+              "g_protein": 1.0,
+              "mg_sodium": 3.0,
+              "g_fiber": 1.0,
+              "g_sugar": 23.0
+            },
+            "serving_size_info": {
+              "serving_size_amount": "1",
+              "serving_size_unit": "cups"
+            },
+            "icons": {
+              "food_icons": [
+                { "name": "Smart Pick", "type": 1 },
+                { "name": "Vegan", "type": 1 }
+              ]
+            }
           }
         }
       ]

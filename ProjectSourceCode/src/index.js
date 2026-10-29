@@ -6,7 +6,8 @@ const path       = require('path');
 const { engine } = require('express-handlebars');
 
 const db         = require('./db');
-const { fetchMenu } = require('./services/menu');
+const { fetchHallMenu } = require('./services/menu');
+const hallsConfig        = require('./config/menus');
 
 const app  = express();
 const PORT = process.env.PORT ?? 3000;
@@ -97,24 +98,40 @@ app.post('/logout', (req, res) => {
 
 // Menu (login required)
 app.get('/menu', requireLogin, async (req, res) => {
-  try {
-    const today = new Date();
-    const items = await fetchMenu(today);
+  const halls = hallsConfig.map(h => ({
+    id: h.id, displayName: h.displayName, live: h.live, active: h.id === 'c5',
+  }));
 
-    // Group items by station while preserving order
+  const dateStr = req.query.date;
+  const today   = dateStr ? new Date(dateStr) : new Date();
+  if (isNaN(today.getTime())) {
+    return res.render('menu', { title: 'Menu', halls, error: 'Invalid date.' });
+  }
+
+  try {
+    const items = await fetchHallMenu('c5', today);
+
+    // Group by station, then by section within each station
     const stationMap = new Map();
     for (const item of items) {
-      if (!stationMap.has(item.station)) stationMap.set(item.station, []);
-      stationMap.get(item.station).push(item);
+      if (!stationMap.has(item.station)) stationMap.set(item.station, new Map());
+      const key = item.section ?? '';
+      const sec = stationMap.get(item.station);
+      if (!sec.has(key)) sec.set(key, []);
+      sec.get(key).push(item);
     }
-    const stations = [...stationMap.entries()].map(([station, items]) => ({ station, items }));
+    const stations = [...stationMap.entries()].map(([station, secMap]) => ({
+      station,
+      sections: [...secMap.entries()].map(([section, items]) => ({
+        section: section || null, items,
+      })),
+    }));
 
     const dateLabel = today.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-
-    res.render('menu', { title: 'Menu', date: dateLabel, stations, noItems: stations.length === 0 });
+    res.render('menu', { title: 'Menu', date: dateLabel, halls, stations, noItems: stations.length === 0 });
   } catch (err) {
     console.error('[menu route]', err.message);
-    res.render('menu', { title: 'Menu', error: 'Could not load today\'s menu. The dining hall data may not be available yet — try again in a few minutes.' });
+    res.render('menu', { title: 'Menu', halls, error: 'Could not load today\'s menu. Try again in a few minutes.' });
   }
 });
 

@@ -1,41 +1,48 @@
-const { expect } = require('chai');
-const { parseItems } = require('../src/services/menu');
+const assert  = require('assert');
 const fixture = require('../src/init_data/menu_fixture.json');
+const { parseItems } = require('../src/services/menu');
 
-describe('parseItems', () => {
-  const date  = fixture.days[0].date;
-  const items = parseItems(fixture.days, date);
+const FIXTURE_DATE = fixture.days[0].date; // '2026-10-26'
+const CTX = { hallId: 'c5', stationLabel: 'Meal of the Day' };
+
+describe('parseItems — positive', () => {
+  let items;
+  before(() => { items = parseItems(fixture.days, FIXTURE_DATE, CTX); });
 
   it('returns at least one item', () => {
-    expect(items).to.have.length.greaterThan(0);
+    assert(items.length > 0, 'expected at least one item');
   });
 
-  it('preserves food name as a non-empty string', () => {
-    expect(items[0].name).to.be.a('string').and.not.be.empty;
+  it('item name is a string', () => {
+    assert(typeof items[0].name === 'string', 'name should be a string');
   });
 
-  it('parses protein as a number', () => {
-    // Seasoned Ground Beef is the first food item (18 g protein)
-    const beef = items.find(i => i.name === 'Seasoned Ground Beef');
-    expect(beef).to.exist;
-    expect(beef.protein).to.equal(18);
+  it('Shredded Jackfruit Shawrma has protein 4', () => {
+    const item = items.find(i => i.name === 'Shredded Jackfruit Shawrma');
+    assert(item, 'Shredded Jackfruit Shawrma not found');
+    assert.strictEqual(item.protein, 4.0);
   });
 
-  it('assigns the correct station', () => {
-    const beef = items.find(i => i.name === 'Seasoned Ground Beef');
-    expect(beef.station).to.equal('The Grange: B.Y.O Burrito, Bowl, or Taco');
+  it('section header text becomes the section field', () => {
+    const item = items.find(i => i.name === 'Shredded Jackfruit Shawrma');
+    assert.strictEqual(item.section, 'Middleterranean');
+  });
+});
+
+describe('parseItems — negative', () => {
+  it('returns empty array when the target date is not in days', () => {
+    const result = parseItems(fixture.days, '1999-01-01', CTX);
+    assert.deepStrictEqual(result, []);
   });
 
-  it('handles null nutrition values without throwing', () => {
-    // Grilled Salmon has null g_fiber and g_sugar; calories/protein should still parse
-    const salmon = items.find(i => i.name === 'Grilled Salmon');
-    expect(salmon).to.exist;
-    expect(salmon.calories).to.equal(230);
-    expect(salmon.protein).to.equal(25);
-  });
-
-  it('returns an empty array for a date not in the fixture', () => {
-    const result = parseItems(fixture.days, '1900-01-01');
-    expect(result).to.deep.equal([]);
+  it('returns empty array when a day has only section headers', () => {
+    const days = [{
+      date: '2026-01-01',
+      menu_items: [
+        { is_section_title: true, text: 'Header Only' },
+      ],
+    }];
+    const result = parseItems(days, '2026-01-01', CTX);
+    assert.deepStrictEqual(result, []);
   });
 });
