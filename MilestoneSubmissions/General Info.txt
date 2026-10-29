@@ -12,8 +12,8 @@ Team members:
         GitHub Username: Adonut37
         Email: aidanpowell7@gmail.com
     Evan Roche
-        GitHub Username: 
-        Email: 
+        GitHub Username: evanmroche
+        Email: dev@evanmroche.com
     Wyatt Taylor
         GitHub Username: 
         Email: 
