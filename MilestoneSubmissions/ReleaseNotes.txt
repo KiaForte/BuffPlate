@@ -6,3 +6,8 @@ Release Notes 10/28/26
     * Inserted a pdf of the Lab 8 Page
     * Added a .gitignore to the file itself and Project Source Code
     * Got information about Landon dropping the class, so took his name off of the team list
+
+Release Notes 11/2/26
+    * Updated Evan's Github Username and Email
+    * Created API pull and tested features
+    * Increased scope of menu to all C5 Stations
