@@ -5,3 +5,10 @@ Meeting 10/26/26
     Talked about the need for minutes file and release notes
     Minutes expected night of, release notes update before meeting
     We're going to feel out how the group aspect is going to go based on who shows next Lab period.
+
+Meeting 11/2/26
+    Kai managed the team 
+    Benji created the API Pull for William's Village 
+    Aidan organized the README 
+    Evan wrote the code to build a plate that hits certain macros 
+    Wyatt has not been in class for the past 7 weeks and is no longer a part of the group
