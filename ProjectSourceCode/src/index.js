@@ -21,6 +21,7 @@ app.engine('hbs', engine({
   helpers: {
     roundVal: n => (n != null ? Math.round(n) : '—'),
     json: v => JSON.stringify(v),
+    any: (...args) => args.slice(0, -1).some(a => Array.isArray(a) ? a.length > 0 : Boolean(a)),
   },
 }));
 app.set('view engine', 'hbs');
@@ -132,13 +133,11 @@ app.get('/menu', requireLogin, async (req, res) => {
       if (!sec.has(key)) sec.set(key, []);
       sec.get(key).push(item);
     }
-    const stations = [...stationMap.entries()].map(([station, secMap]) => ({
-      station,
-      mealTimes: stationMeta.get(station)?.mealTimes ?? ['lunch', 'dinner'],
-      sections: [...secMap.entries()].map(([section, items]) => ({
-        section: section || null, items,
-      })),
-    }));
+    const stations = [...stationMap.entries()].map(([station, secMap]) => {
+      const sections  = [...secMap.entries()].map(([section, items]) => ({ section: section || null, items }));
+      const itemCount = sections.reduce((n, s) => n + s.items.length, 0);
+      return { station, mealTimes: stationMeta.get(station)?.mealTimes ?? ['lunch', 'dinner'], sections, itemCount };
+    });
 
     const allTags      = [...new Set(items.flatMap(i => i.tags))];
     const inclusionTags = allTags.filter(t => PREFERENCES.has(t)).sort();

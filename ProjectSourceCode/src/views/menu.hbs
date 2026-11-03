@@ -164,17 +164,10 @@
       <button class="meal-btn" data-meal="breakfast">Breakfast</button>
       <button class="meal-btn" data-meal="lunch">Lunch</button>
       <button class="meal-btn" data-meal="dinner">Dinner</button>
-      {{#if inclusionTags}}{{else}}{{#if exclusionTags}}{{else}}{{/if}}{{/if}}
-      {{#if inclusionTags}}
+      {{#if (any inclusionTags exclusionTags)}}
         <button class="filter-toggle" id="filter-toggle" style="margin-left:auto;">
           <span class="dot"></span>Filters ▾
         </button>
-      {{else}}
-        {{#if exclusionTags}}
-          <button class="filter-toggle" id="filter-toggle" style="margin-left:auto;">
-            <span class="dot"></span>Filters ▾
-          </button>
-        {{/if}}
       {{/if}}
     </div>
 
@@ -219,7 +212,7 @@
     <div id="station-list">
       {{#each stations}}
         <details class="station" data-station data-meal-times="{{json mealTimes}}">
-          <summary>{{station}}<span class="chevron">▾</span></summary>
+          <summary>{{station}}<span style="display:flex;align-items:center;gap:8px;"><span style="font-size:.7rem;font-weight:500;opacity:.5;text-transform:none;letter-spacing:0;">{{itemCount}}</span><span class="chevron">▾</span></span></summary>
           <div class="station-body">
             {{#each sections}}
               {{#if section}}<div class="section-label">{{section}}</div>{{/if}}
