@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "test": "mocha test/**/*.test.js"
+    "test": "mocha --require test/setup.js --timeout 10000 \"test/**/*.test.js\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
