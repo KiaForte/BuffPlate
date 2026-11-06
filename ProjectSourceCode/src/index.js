@@ -76,23 +76,50 @@ app.post('/login', async (req, res) => {
 
 app.get('/register', (req, res) => res.render('register', { title: 'Create account' }));
 
+
 app.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, height_in, weight_kg, gender } = req.body;
+
+  const height = Number(height_in);
+  const weight = Number(weight_lbs);
+  const allowedGenders = ['', 'male', 'female', 'nonbinary', 'self_describe'];
+
+  if (
+    !username || !email || !password || password.length < 8 ||
+    !Number.isFinite(height) || height < 20 || height > 100 ||
+    !Number.isFinite(weight) || weight < 20 || weight > 1100 ||
+    !allowedGenders.includes(gender ?? '')
+  ) {
+    return res.status(400).render('register', {
+      title: 'Create account',
+      error: 'Please enter valid account and profile information.'
+    });
+  }
+
   try {
     const hash = await bcrypt.hash(password, 10);
+
     await db.query(
-      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3)',
-      [username, email, hash]
+      `INSERT INTO users
+       (username, email, password, height_in, weight_kg, gender)
+       VALUES ($1, $2, $3, $4, $5, $6)`,
+      [username, email, hash, height, weight, gender || null]
     );
+
     res.redirect('/login');
   } catch (err) {
+    console.error(err);
     const duplicate = err.code === '23505';
+
     res.render('register', {
       title: 'Create account',
-      error: duplicate ? 'Username or email already taken.' : 'Registration failed. Try again.',
+      error: duplicate
+        ? 'Username or email already taken.'
+        : 'Registration failed. Try again.'
     });
   }
 });
+
 
 app.post('/logout', (req, res) => {
   req.session.destroy(() => res.redirect('/login'));
