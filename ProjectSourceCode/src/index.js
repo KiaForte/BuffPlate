@@ -78,7 +78,7 @@ app.get('/register', (req, res) => res.render('register', { title: 'Create accou
 
 
 app.post('/register', async (req, res) => {
-  const { username, email, password, height_in, weight_kg, gender } = req.body;
+  const { username, email, password, height_in, weight_lbs, gender } = req.body;
 
   const height = Number(height_in);
   const weight = Number(weight_lbs);
@@ -101,7 +101,7 @@ app.post('/register', async (req, res) => {
 
     await db.query(
       `INSERT INTO users
-       (username, email, password, height_in, weight_kg, gender)
+       (username, email, password, height_in, weight_lbs, gender)
        VALUES ($1, $2, $3, $4, $5, $6)`,
       [username, email, hash, height, weight, gender || null]
     );
