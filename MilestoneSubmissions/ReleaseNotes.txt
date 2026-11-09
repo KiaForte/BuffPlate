@@ -11,3 +11,7 @@ Release Notes 11/2/26
     * Updated Evan's Github Username and Email
     * Created API pull and tested features
     * Increased scope of menu to all C5 Stations
+
+Release Notes 11/9/26
+    * Staged some changes for the tests that will be implemented in this week's lab
+    * Added app.js and moved code from index.js
