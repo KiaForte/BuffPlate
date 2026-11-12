@@ -15,3 +15,4 @@ Release Notes 11/2/26
 Release Notes 11/9/26
     * Staged some changes for the tests that will be implemented in this week's lab
     * Added app.js and moved code from index.js
+    * Added tests to project
