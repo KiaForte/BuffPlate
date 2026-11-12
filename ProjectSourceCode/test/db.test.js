@@ -1,8 +1,6 @@
 const assert = require('node:assert/strict');
 const db = require('../src/db');
 
-after(() => db.end());
-
 describe('database', () => {
   it('connects to the test database and finds the menu_items table', async () => {
     const { rows } = await db.query(

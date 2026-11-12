@@ -5,6 +5,7 @@ const path       = require('path');
 const { engine } = require('express-handlebars');
 
 const db         = require('./db');
+const validateRegistration = require('./validateRegistration');
 const { fetchHallMenu } = require('./api/menu');
 const hallsConfig        = require('./config/menus');
 
@@ -76,6 +77,13 @@ app.get('/register', (req, res) => res.render('register', { title: 'Create accou
 
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
+  if (!validateRegistration(req.body)) {
+    return res.status(400).render('register', {
+      title: 'Create account',
+      error: 'Invalid input.',
+    });
+  }
+
   try {
     const hash = await bcrypt.hash(password, 10);
     await db.query(
