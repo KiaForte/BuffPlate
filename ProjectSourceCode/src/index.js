@@ -7,6 +7,11 @@ const { engine } = require('express-handlebars');
 
 const db         = require('./db');
 const { fetchHallMenu } = require('./api/menu');
+const { calculateNutrition, getMealTargets } =
+  require('./generate/nutrition');
+
+const { generateMeal } =
+  require('./generate/generate');
 const hallsConfig        = require('./config/menus');
 
 const app  = express();
