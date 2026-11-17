@@ -3,10 +3,18 @@ Feature 1:
 
 Scope: API Pull
 Acceptance Criteria: The website successfully pulls menu information (macros included) from Nutrislice.
-Environment: Not run
-Testers: Not run
-Test cases: Not run
-Results Fields: Not run
+Environment: Docker (Node 20 / Postgres 15), localhost:3001
+Testers: Benji Phipps
+Test cases:
+  1. Log in and navigate to /menu — page loads with today's menu items from Nutrislice
+  2. Each item displays name, calories, protein, carbs, and fat
+  3. Items are grouped by station (Meal of the Day, Toast, Curry Road, etc.)
+  4. If Nutrislice is unreachable, page shows an error banner instead of crashing
+  5. Refreshing within 1 hour serves cached data without re-fetching
+Results Fields: All 5 test cases passed on 2026-11-16. Live data confirmed by comparing
+items on screen to colorado-diningmenus.nutrislice.com. Error banner verified by
+clearing the Postgres cache volume. Cache confirmed via docker logs showing no
+re-fetch on second load within the hour.
 
 Feature 2:
 
