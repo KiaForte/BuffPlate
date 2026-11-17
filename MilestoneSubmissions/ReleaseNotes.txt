@@ -16,3 +16,11 @@ Release Notes 11/9/26
     * Staged some changes for the tests that will be implemented in this week's lab
     * Added app.js and moved code from index.js
     * Added tests to project
+
+Release Notes 11/16/26
+    * Added Center for Community dining hall with all 10 stations
+    * Fixed hall selector — now switches between dining halls instead of always showing C5
+    * Added allergen exclusion and dietary preference filters to menu page
+    * Added Breakfast/Lunch/Dinner meal-time buttons to filter stations by meal period
+    * Station accordions now closed by default
+    * Filled out UAT results for API Pull feature
