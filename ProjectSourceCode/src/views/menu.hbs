@@ -148,7 +148,7 @@
     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
       {{#each halls}}
         {{#if live}}
-          <button style="font-family:inherit;font-size:.875rem;font-weight:600;padding:7px 16px;border-radius:99px;border:none;background:var(--dark);color:var(--dark-lt);cursor:default;">{{displayName}}</button>
+          <a href="/menu?hall={{id}}" style="font-family:inherit;font-size:.875rem;font-weight:600;padding:7px 16px;border-radius:99px;border:none;text-decoration:none;{{#if active}}background:var(--dark);color:var(--dark-lt);{{else}}background:transparent;border:1.5px solid var(--inner);color:var(--fg-2);{{/if}}">{{displayName}}</a>
         {{else}}
           <button disabled style="font-family:inherit;font-size:.875rem;font-weight:500;padding:7px 16px;border-radius:99px;border:1.5px solid var(--inner);background:transparent;color:var(--fg-2);cursor:not-allowed;display:flex;align-items:center;gap:6px;">
             {{displayName}}<span style="font-size:.75rem;opacity:.65;">Coming soon</span>

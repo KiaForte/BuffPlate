@@ -111,8 +111,12 @@ app.get('/dev-login', (req, res) => {
 
 // Menu (login required)
 app.get('/menu', requireLogin, async (req, res) => {
+  const hallId   = req.query.hall ?? 'c5';
+  const hallCfg  = hallsConfig.find(h => h.id === hallId && h.live);
+  const activeId = hallCfg ? hallId : 'c5';
+
   const halls = hallsConfig.map(h => ({
-    id: h.id, displayName: h.displayName, live: h.live, active: h.id === 'c5',
+    id: h.id, displayName: h.displayName, live: h.live, active: h.id === activeId,
   }));
 
   const dateStr = req.query.date;
@@ -125,10 +129,10 @@ app.get('/menu', requireLogin, async (req, res) => {
   const PREFERENCES = new Set(['Vegan', 'Vegetarian', 'Smart Pick', 'Gluten Free']);
 
   try {
-    const items = await fetchHallMenu('c5', today);
+    const items = await fetchHallMenu(activeId, today);
 
-    const c5Cfg       = hallsConfig.find(h => h.id === 'c5');
-    const stationMeta = new Map(c5Cfg.stations.map(s => [s.label, s]));
+    const activeCfg   = hallsConfig.find(h => h.id === activeId);
+    const stationMeta = new Map(activeCfg.stations.map(s => [s.label, s]));
 
     // Group by station → section
     const stationMap = new Map();
