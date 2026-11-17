@@ -7,12 +7,12 @@ Data link:  https://colorado-diningmenus.api.nutrislice.com/menu/api/weeks/schoo
 No API key. Unofficial endpoint, so cache results and send a normal User-Agent header.
 
 ## Halls
-| Display name         | Slug                  | Status      |
-|----------------------|-----------------------|-------------|
-| C5 (Village Center)  | village-center-dining | live        |
-| Sewall Hall          | not collected yet     | coming soon |
-| Center for Community | not collected yet     | coming soon |
-| Kitt Salad           | not collected yet     | coming soon |
+| Display name         | Slug                    | Status      |
+|----------------------|-------------------------|-------------|
+| C5                   | village-center-dining   | live        |
+| Center for Community | center-for-community    | live        |
+| Sewall               | sewall-dining-center    | coming soon |
+| Alferd Packer Grill  | alferd-packer-grill     | coming soon |
 
 ## C5 stations (slug: village-center-dining)
 | Station          | Menu type              |
