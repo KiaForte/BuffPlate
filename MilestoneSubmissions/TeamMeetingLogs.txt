@@ -17,3 +17,11 @@ Meeting 11/9/26
     Talked about progress
     Not much was done, Benji was sick but still worked on some things
     Kai is working with the logistics of the lab
+
+Meeting 11/16/26
+    Aidan created student profiles that generates macros based on height/weight
+    Benji has added the C4 menu to the API Pull and is adding in the other dining halls
+    Kai is looking to pick up meal saving because Evan is not participating
+    Instructor is aware we're down a person, and we should be graded accordingly
+    Talked about reassigning items in the project
+    Aidan asked about the exact amount the page is going to prescribe and was advised to round to the nearest scoop/ half scoop
