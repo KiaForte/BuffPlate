@@ -22,4 +22,5 @@ Release Notes 11/16/26
     * Fixed hall selector — now switches between dining halls instead of always showing C5
     * Station accordions now closed by default
     * Filled out UAT results for API Pull feature
-    * Aidan working on login features (in progress on Aidan branch)
+    * Added different modes for what your goal is
+    * finished integration of height and weight into meal calculations
